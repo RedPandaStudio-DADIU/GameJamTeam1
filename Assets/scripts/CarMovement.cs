@@ -20,9 +20,6 @@ public class CarMovement : MonoBehaviour
         if (isMoving){
             // # Move the Car
             transform.position=new Vector3(transform.position.x+speed*Time.deltaTime, transform.position.y, transform.position.z);
-            // transform.position =  new Vector3(transform.position.x-0.02f, transform.position.y, transform.position.z) * Time.deltaTime;
-            // # Check collision
-            // # Check end of camera viewpoint
         }
     }
 }
