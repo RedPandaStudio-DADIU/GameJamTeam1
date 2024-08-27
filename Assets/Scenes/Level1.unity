@@ -269,11 +269,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65ef54c20a50b3447bd18c809ebc737a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 5
+  jumpForce: 10
   moveSpeed: 10
   gravityModifier: 1
   isOnGround: 1
   gameOver: 0
+  currentSpeed: 0
+  acceleration: 2
+  deceleration: 2
 --- !u!54 &205080620
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -282,7 +285,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 205080618}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 1.5
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
