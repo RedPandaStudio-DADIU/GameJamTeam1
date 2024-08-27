@@ -47,20 +47,30 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    private void OnTriggerEnter(Collider other) {
+        if(other.gameObject.CompareTag("Finish")){
+            gameOver = true;
+            Debug.Log("Game Over");
+        }
+    }
+
     private void OnCollisionEnter(Collision collision){
         //isOnGround = true;
         if (collision.gameObject.CompareTag("Ground")){
             isOnGround = true;
             //dirtParticle.Play();
 
-        }else if (collision.gameObject.CompareTag("Finish")){
-            gameOver = true;
-            Debug.Log("Game Over");
+        } else if (collision.gameObject.CompareTag("Car")){
+            Debug.Log("Collision!");
+        }
+        // else if (collision.gameObject.CompareTag("Finish")){
+            // gameOver = true;
+            // Debug.Log("Game Over");
             //playerAnim.SetBool("Death_b", true);
             //playerAnim.SetInteger("DeathType_int", 1);
             //explosionParticle.Play();
             //dirtParticle.Stop();
             //playerAudio.PlayOneShot(crashSound, 1.0f);
-        }
+        // }
     }
 }
