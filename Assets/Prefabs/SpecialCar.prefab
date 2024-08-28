@@ -228,6 +228,7 @@ GameObject:
   - component: {fileID: 6017040663899414219}
   - component: {fileID: 2634979078884357243}
   - component: {fileID: 7883272688473625955}
+  - component: {fileID: 7388517817092609100}
   m_Layer: 7
   m_Name: SpecialCar
   m_TagString: SpecialCar
@@ -341,7 +342,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isMoving: 0
   speed: 0
-  movementZLimit: -100
 --- !u!54 &7883272688473625955
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -369,6 +369,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &7388517817092609100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4138517180398399840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57484b3a248c44441a3418c619dc95f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6069479313177108319
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1008413671169529682}
   - component: {fileID: 6252959528787413420}
   - component: {fileID: 3248221755857411341}
+  - component: {fileID: 2105129073474525897}
   m_Layer: 7
   m_Name: Car
   m_TagString: Car
@@ -152,6 +153,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isMoving: 0
   speed: 0
+--- !u!114 &2105129073474525897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2366875425334261069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57484b3a248c44441a3418c619dc95f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3541941870071845461
 GameObject:
   m_ObjectHideFlags: 0

@@ -238,7 +238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65ef54c20a50b3447bd18c809ebc737a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 10
+  jumpForce: 15
   moveSpeed: 10
   gravityModifier: 1
   isOnGround: 1
@@ -619,13 +619,13 @@ MonoBehaviour:
   car: {fileID: 2366875425334261069, guid: 922eaaa9f1cd29840b81468c73cad6d2, type: 3}
   specialCar: {fileID: 4138517180398399840, guid: e7ceb08c43ad1074c8ab14cd039d933b, type: 3}
   startDelay: 1.78
-  repeatTime: 2
   minIntervalTime: 4
-  maxIntervalTime: 12
-  minReactionDistance: 2
-  maxReactionDistance: 2
-  startDistance: 10
-  collisionRadius: 30
+  maxIntervalTime: 25
+  maxIntervalTimeSpecialCar: 6
+  minReactionDistance: 7
+  maxReactionDistance: 15
+  startDistance: 5
+  collisionRadius: 15
 --- !u!1 &830440924
 GameObject:
   m_ObjectHideFlags: 0

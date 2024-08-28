@@ -17,13 +17,6 @@ public class PlayerController : MonoBehaviour
     public float deceleration = 2f; 
     private bool canMove = false;
 
-    //private Animator playerAnim;
-    //public ParticleSystem explosionParticle;
-    //public ParticleSystem dirtParticle;
-    //public AudioClip jumpSound;
-    //public AudioClip crashSound;
-    //private AudioSource playerAudio;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -83,19 +76,15 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground")){
             isOnGround = true;
 
-        } else if (collision.gameObject.CompareTag("Car")){
+        } else if (collision.gameObject.CompareTag("Car") || collision.gameObject.CompareTag("SpecialCar")){
             Debug.Log("Collision!");
             canMove = false;
-            collision.transform.TryGetComponent(out CarMovement car);
-            car.setCanMove(false);
-        } else if (collision.gameObject.CompareTag("SpecialCar")){
-            Debug.Log("Collision!");
-            canMove = false;
-            collision.transform.TryGetComponent(out SpecialCarMovement specialCar);
-            specialCar.setCanMove(false);
+            Time.timeScale = 0;
         } else if (collision.gameObject.CompareTag("Finish")){
             gameOver = true;
             Debug.Log("Game Over");
+            Time.timeScale = 0;
+
         }
     }
 

@@ -27,9 +27,7 @@ public class SpecialCarMovement : MonoBehaviour
             transform.position=new Vector3(transform.position.x, transform.position.y, transform.position.z+speed*Time.deltaTime);
 
             Vector3 screenPosition = Camera.main.WorldToScreenPoint(transform.position);
-            // if (transform.position.z < movementZLimit){
-            //     // Destroy(transform.gameObject);
-            // } 
+
 
         }
     }
