@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -72,6 +72,7 @@ public class PlayerController : MonoBehaviour
         if(other.gameObject.CompareTag("Finish")){
             gameOver = true;
             Debug.Log("Game Over");
+            SceneManager.LoadScene("Ending");
         }
     }
 
