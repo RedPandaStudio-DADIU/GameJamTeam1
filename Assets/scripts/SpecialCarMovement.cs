@@ -6,7 +6,9 @@ public class SpecialCarMovement : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] bool isMoving = false;
-    [SerializeField] float speed = 0;    
+    [SerializeField] float speed = 0.0f;    
+    [SerializeField] float movementZLimit = -50.0f;    
+
     void Start()
     {
         isMoving = true;
@@ -19,6 +21,12 @@ public class SpecialCarMovement : MonoBehaviour
          if (isMoving){
             // # Move the Car
             transform.position=new Vector3(transform.position.x, transform.position.y, transform.position.z+speed*Time.deltaTime);
+
+            Vector3 screenPosition = Camera.main.WorldToScreenPoint(transform.position);
+            if (transform.position.z < movementZLimit){
+                // Destroy(transform.gameObject);
+            } 
+
         }
     }
 }
