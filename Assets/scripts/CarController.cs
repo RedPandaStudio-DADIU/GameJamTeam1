@@ -16,15 +16,26 @@ public class CarController : MonoBehaviour
     [SerializeField] float maxReactionDistance = 7.0f;
     [SerializeField] float startDistance = 5.0f;
     [SerializeField] float collisionRadius = 30.0f;
-
     private Transform cyclistTransform;
+    private Transform doorPosition;
+    private GameObject player;
+    private PlayerController playerController;
+
 
     void Start()
     {
         cyclistTransform = GameObject.FindWithTag("Player").transform; 
+        doorPosition = GameObject.FindWithTag("Finish").transform; 
         repeatTime = 5.0f;
         InvokeRepeating("SpawnCar", startDelay, repeatTime);
         InvokeRepeating("SpawnSpecialCar", startDelay, repeatTime);
+
+        player = GameObject.Find("cycler");
+
+        if (player != null)
+        {
+            playerController = player.GetComponent<PlayerController>();
+        }
 
     }
 
@@ -32,10 +43,20 @@ public class CarController : MonoBehaviour
     void Update()
     {
         repeatTime = Random.Range(minIntervalTime,maxIntervalTime);
+        if (playerController != null){
+            if (!playerController.getCanMove()){
+                //stop spawning
+                CancelInvoke("SpawnCar");
+                CancelInvoke("SpawnSpecialCar");
+
+            }
+        }
     }
 
     private void SpawnCar(){
-        GameObject instance = Instantiate(car);
+        if (!IsCloseToFinish()){
+            // GameObject instance = Instantiate(car);
+        }
     }
 
      private void SpawnSpecialCar(){
@@ -48,9 +69,21 @@ public class CarController : MonoBehaviour
         }
     }
 
+    private bool IsCloseToFinish()
+    {
+        if ((doorPosition.position.x - cyclistTransform.position.x) < 20.0f){
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     private bool IsTraffic(Vector3 position, Vector3 direction, float checkDistance = 30.0f)
     {
+
+        /** Move this logic to Update so that it checks the status every frame
+        **/
+
         // Collider[] colliders = Physics.OverlapSphere(position, collisionRadius);
         // foreach (Collider col in colliders)
         // {

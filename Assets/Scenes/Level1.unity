@@ -122,37 +122,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &63745961
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 63745962}
-  m_Layer: 0
-  m_Name: CarPool
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &63745962
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 63745961}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.1027093, y: 3.7372897, z: -0.000000022351742}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &173399971
 GameObject:
   m_ObjectHideFlags: 0
@@ -164,7 +133,7 @@ GameObject:
   - component: {fileID: 173399972}
   - component: {fileID: 173399974}
   - component: {fileID: 173399973}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cylinder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -250,7 +219,7 @@ GameObject:
   - component: {fileID: 205080621}
   - component: {fileID: 205080620}
   - component: {fileID: 205080619}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: cycler
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -510,7 +479,7 @@ GameObject:
   - component: {fileID: 454011071}
   - component: {fileID: 454011070}
   - component: {fileID: 454011069}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: door
   m_TagString: Finish
   m_Icon: {fileID: 0}
@@ -532,7 +501,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -613,7 +582,7 @@ GameObject:
   m_Component:
   - component: {fileID: 600080556}
   - component: {fileID: 600080557}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: CarController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -758,7 +727,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -0.67655, y: 2.4, z: 5.6}
-  m_LocalScale: {x: 5.200439, y: 1, z: 1}
+  m_LocalScale: {x: 7, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -842,7 +811,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 10}
-  m_LocalScale: {x: 5.6083, y: 1, z: 3}
+  m_LocalScale: {x: 10, y: 1, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -879,7 +848,7 @@ GameObject:
   - component: {fileID: 1385110145}
   - component: {fileID: 1385110147}
   - component: {fileID: 1385110146}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1055,5 +1024,4 @@ SceneRoots:
   - {fileID: 830440928}
   - {fileID: 205080624}
   - {fileID: 454011072}
-  - {fileID: 63745962}
   - {fileID: 600080556}
