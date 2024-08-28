@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1127979369202888150}
   - component: {fileID: 4303976233710256633}
   - component: {fileID: 8110938158328575122}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: CarWheelLF
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -119,7 +119,7 @@ GameObject:
   - component: {fileID: 7184063162962653876}
   - component: {fileID: 770185636277647162}
   - component: {fileID: 1833783145324423046}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: CarWheelRF
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -228,7 +228,8 @@ GameObject:
   - component: {fileID: 6017040663899414219}
   - component: {fileID: 2634979078884357243}
   - component: {fileID: 7883272688473625955}
-  m_Layer: 0
+  - component: {fileID: 7388517817092609100}
+  m_Layer: 7
   m_Name: SpecialCar
   m_TagString: SpecialCar
   m_Icon: {fileID: 0}
@@ -341,7 +342,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isMoving: 0
   speed: 0
-  movementZLimit: -100
 --- !u!54 &7883272688473625955
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -369,6 +369,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &7388517817092609100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4138517180398399840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57484b3a248c44441a3418c619dc95f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6069479313177108319
 GameObject:
   m_ObjectHideFlags: 0
@@ -381,7 +393,7 @@ GameObject:
   - component: {fileID: 3008497163708468347}
   - component: {fileID: 2476304290821427702}
   - component: {fileID: 4712208886839186311}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Front2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -486,7 +498,7 @@ GameObject:
   - component: {fileID: 1721630539982510678}
   - component: {fileID: 1286459873819082853}
   - component: {fileID: 4627766938537188985}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: CarWheelRB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -593,7 +605,7 @@ GameObject:
   - component: {fileID: 3226647078512729932}
   - component: {fileID: 9163169300468128923}
   - component: {fileID: 3830582686570887358}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Front1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -698,7 +710,7 @@ GameObject:
   - component: {fileID: 3160468707468114569}
   - component: {fileID: 7532241823046581412}
   - component: {fileID: 1977770089976322366}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: CarWheelLB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
