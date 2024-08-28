@@ -6,11 +6,16 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody playerRb;
-    public float jumpForce=5;
+    public float jumpForce=10;
     public float moveSpeed=10;
-    public float gravityModifier=1;
+    public float gravityModifier=2;
     public bool isOnGround = true;
     public bool gameOver = false;
+
+    public float currentSpeed = 0;  // 
+    public float acceleration = 2f;   // 
+    public float deceleration = 2f; 
+
     //private Animator playerAnim;
     //public ParticleSystem explosionParticle;
     //public ParticleSystem dirtParticle;
@@ -43,7 +48,23 @@ public class PlayerController : MonoBehaviour
         }
 
         float horizontalInput = Input.GetAxis("Horizontal");
-        playerRb.velocity = new Vector2(horizontalInput * moveSpeed, playerRb.velocity.y);
+        //playerRb.velocity = new Vector2(horizontalInput * moveSpeed, playerRb.velocity.y);
+        if (horizontalInput > 0)
+        {
+            // speed up
+            currentSpeed = Mathf.MoveTowards(currentSpeed, moveSpeed, acceleration * Time.deltaTime);
+        }
+        else if (horizontalInput < 0)
+        {
+            // slow down
+            currentSpeed = Mathf.MoveTowards(currentSpeed, 0, deceleration * Time.deltaTime);
+        }
+        else
+        {
+            // gradully stop
+            currentSpeed = Mathf.MoveTowards(currentSpeed, 0, deceleration * Time.deltaTime);
+        }
+        playerRb.velocity = new Vector2(currentSpeed, playerRb.velocity.y);
 
     }
 
