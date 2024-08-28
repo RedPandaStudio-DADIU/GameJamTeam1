@@ -81,7 +81,7 @@ public class PlayerController : MonoBehaviour
             isOnGround = true;
             //dirtParticle.Play();
 
-        } else if (collision.gameObject.CompareTag("Car")){
+        } else if (collision.gameObject.CompareTag("Car") || collision.gameObject.CompareTag("SpecialCar")){
             Debug.Log("Collision!");
         }
         // else if (collision.gameObject.CompareTag("Finish")){
