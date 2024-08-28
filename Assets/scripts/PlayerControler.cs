@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -63,14 +63,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // private void OnTriggerEnter(Collider other) {
-    //     if(other.gameObject.CompareTag("Finish")){
-    //         gameOver = true;
-    //         Debug.Log("Game Over");
-    //         currentSpeed = 0.0f;
-    //         canMove = false;
-    //     }
-    // }
+    private void OnTriggerEnter(Collider other) {
+        if(other.gameObject.CompareTag("Finish")){
+            gameOver = true;
+            Debug.Log("Game Over");
+            SceneManager.LoadScene("Ending");
+        }
+    }
+
 
     private void OnCollisionEnter(Collision collision){
         if (collision.gameObject.CompareTag("Ground")){
