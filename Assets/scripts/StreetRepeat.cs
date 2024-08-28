@@ -27,16 +27,16 @@ public class StreetRepeat : MonoBehaviour
     }
 
     // Update is called once per frame
-    // void Update()
-    // {
-    //      if (playerTransform.position.x > streetQueue.Peek().transform.position.x + roadLength)
-    //     {
-    //         // move and repeat the roads
-    //         GameObject movedRoad = streetQueue.Dequeue();
-    //         movedRoad.transform.position += new Vector3(numberOfStreets * roadLength, 0, 0);
-    //         streetQueue.Enqueue(movedRoad);
-    //     }
-    // }
+    void Update()
+    {
+         if (playerTransform.position.x > streetQueue.Peek().transform.position.x + roadLength)
+        {
+            // move and repeat the roads
+            GameObject movedRoad = streetQueue.Dequeue();
+            movedRoad.transform.position += new Vector3(numberOfStreets * roadLength, 0, 0);
+            streetQueue.Enqueue(movedRoad);
+        }
+    }
      GameObject GetRandomRoadPrefab()
     {
         int randomIndex = Random.Range(0, streetPrefabs.Length);
