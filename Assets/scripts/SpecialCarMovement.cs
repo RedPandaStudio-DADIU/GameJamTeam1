@@ -26,7 +26,7 @@ public class SpecialCarMovement : MonoBehaviour
             // # Move the Car
             transform.position=new Vector3(transform.position.x, transform.position.y, transform.position.z+speed*Time.deltaTime);
 
-            Vector3 screenPosition = Camera.main.WorldToScreenPoint(transform.position);
+            // Vector3 screenPosition = Camera.main.WorldToScreenPoint(transform.position);
 
 
         }
