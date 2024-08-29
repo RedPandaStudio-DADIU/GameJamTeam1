@@ -10,7 +10,7 @@ public class MultiplicateEnv : MonoBehaviour
     void Start()
     {
         envManager = FindObjectOfType<EnvSpawner>();
-        visibiityLimit= 30f;
+        visibiityLimit= 50f;
     }
 
     public void CheckVisibility(){
