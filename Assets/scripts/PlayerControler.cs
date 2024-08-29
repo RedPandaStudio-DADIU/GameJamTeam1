@@ -29,16 +29,16 @@ public class PlayerController : MonoBehaviour
         playerRb.constraints |= RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
         canMove = true;
 
-         jumpForce=35;
-         moveSpeed=10;
-         gravityModifier=3;
+        jumpForce=35;
+        moveSpeed=10;
+        gravityModifier=3;
 
         gameOver = false;
         isOnGround = true;
         currentSpeed = 0;
         Time.timeScale = 1;
 
-       startPosition = new Vector3(-45, 2, 0);
+       startPosition = new Vector3(400, 2, -6);
         transform.position = startPosition;
         //playerAudio = GetComponent<AudioSource>();
        // playerRb.AddForce(Vector3.up * 1000);

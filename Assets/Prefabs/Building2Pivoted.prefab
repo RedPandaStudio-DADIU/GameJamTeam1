@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   envManager: {fileID: 0}
-  visibiityLimit: 0
+  visibiityLimit: 50
 --- !u!23 &7008555844641900430
 MeshRenderer:
   m_ObjectHideFlags: 0
