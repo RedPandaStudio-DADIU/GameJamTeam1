@@ -6,26 +6,40 @@ using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody playerRb;
-    public float jumpForce=10;
+    public float jumpForce=35;
     public float moveSpeed=10;
-    public float gravityModifier=2;
+    public float gravityModifier=3;
     public bool isOnGround = true;
     public bool gameOver = false;
 
     public float currentSpeed = 0;  // 
-    public float acceleration = 2f;   // 
-    public float deceleration = 2f; 
+    public float acceleration = 3f;   // 
+    public float deceleration = 3f; 
     private bool canMove = false;
+
+    public Vector3 startPosition;
 
     // Start is called before the first frame update
     void Start()
     {
         playerRb = GetComponent<Rigidbody>();
         //playerAnim = GetComponent<Animator>();
-        Physics.gravity *= gravityModifier;
+        Physics.gravity = new Vector3(0, -10, 0)* gravityModifier;
         playerRb.constraints = RigidbodyConstraints.FreezePositionZ;
         playerRb.constraints |= RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
         canMove = true;
+
+         jumpForce=35;
+         moveSpeed=10;
+         gravityModifier=3;
+
+        gameOver = false;
+        isOnGround = true;
+        currentSpeed = 0;
+        Time.timeScale = 1;
+
+       startPosition = new Vector3(-45, 2, 0);
+        transform.position = startPosition;
         //playerAudio = GetComponent<AudioSource>();
        // playerRb.AddForce(Vector3.up * 1000);
     }
@@ -71,6 +85,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+   
 
     private void OnCollisionEnter(Collision collision){
         if (collision.gameObject.CompareTag("Ground")){
@@ -80,6 +95,7 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Collision!");
             canMove = false;
             Time.timeScale = 0;
+            SceneManager.LoadScene("Failing");
         } else if (collision.gameObject.CompareTag("Finish")){
             gameOver = true;
             Debug.Log("Game Over");
