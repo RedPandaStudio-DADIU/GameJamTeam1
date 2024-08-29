@@ -7,6 +7,7 @@ TagManager:
   - Ground
   - Car
   - SpecialCar
+  - Building
   layers:
   - Default
   - TransparentFX
@@ -16,7 +17,7 @@ TagManager:
   - UI
   - Door
   - Cars
-  - 
+  - Buildings
   - 
   - 
   - 
