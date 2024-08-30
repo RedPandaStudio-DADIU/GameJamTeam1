@@ -95,6 +95,13 @@ public class StoryManager : MonoBehaviour
         textRect.anchoredPosition = new Vector2(0, 50); // 字幕稍微向上移动一点，以避免太靠近屏幕边缘
         textRect.sizeDelta = new Vector2(Screen.width * 0.8f, Screen.height * 0.1f); // 设置字幕框的大小
       
+       storyText.enableAutoSizing = true;
+
+        // 设置字体大小范围
+        storyText.fontSizeMin = 12;
+        storyText.fontSizeMax = 80;
+
+        
 storyText.alignment = TextAlignmentOptions.Center; // 这将使文本内容居中对齐
     storyText.text = storyTexts[currentIndex];
 

@@ -16,6 +16,9 @@ public class UICanvas : MonoBehaviour
     public Vector2 referenceResolution = new Vector2(1920, 1080);
     public float widthHeightRatioThreshold = 1.5f; // 例如16:9的宽高比
 
+
+ 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -52,6 +55,12 @@ public class UICanvas : MonoBehaviour
        float screenWidthRatio = Screen.width / referenceResolution.x;
         float screenHeightRatio = Screen.height / referenceResolution.y;
 
+   textElement.enableAutoSizing = true;
+
+        // 设置字体大小范围
+        textElement.fontSizeMin = 12;
+        textElement.fontSizeMax = 80;
+
         // 动态调整文本的位置和大小
         if (textElement != null)
         {
@@ -75,40 +84,9 @@ public class UICanvas : MonoBehaviour
               imageElement.sizeDelta = new Vector2(referenceResolution.x * 0.2f * screenWidthRatio, referenceResolution.y * 0.2f * screenHeightRatio);
        }
 
-        AdjustUIForAspectRatio(screenWidthRatio, screenHeightRatio);
+        //AdjustUIForAspectRatio(screenWidthRatio, screenHeightRatio);
     }
 
 
-    void AdjustUIForAspectRatio(float screenWidthRatio, float screenHeightRatio)
-    {
-        float aspectRatio = (float)Screen.width / Screen.height;
-
-        // 基于屏幕比例调整某个 UI 元素的位置或大小
-        if (aspectRatio > widthHeightRatioThreshold)
-        {
-            // 对于宽屏（例如16:9），可能需要更改UI布局
-            if (textElement != null)
-            {
-                textElement.fontSize = 80;
-            }
-            if (buttonElement != null)
-            {
-                // 调整按钮的字体大小
-                buttonElement.GetComponentInChildren<TextMeshProUGUI>().fontSize = 60;
-            }
-        }
-        else
-        {
-            // 对于窄屏（例如4:3），可能需要更改其他布局
-            if (textElement != null)
-            {
-                textElement.fontSize = 80;
-            }
-            if (buttonElement != null)
-            {
-                // 调整按钮的字体大小
-                buttonElement.GetComponentInChildren<TextMeshProUGUI>().fontSize = 60;
-            }
-        }
-    }
+    
 }
