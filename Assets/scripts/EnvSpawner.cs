@@ -7,8 +7,8 @@ public class EnvSpawner : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] GameObject[] buildingPrefabs;
     [SerializeField] GameObject streetPrefab;
-    [SerializeField] int numberOfStreetsInitial = 3;
-    [SerializeField] int numberOfBuildingsInitial = 10;
+    [SerializeField] int numberOfStreetsInitial = 4;
+    [SerializeField] int numberOfBuildingsInitial = 12;
 
     private Vector3 spawnPosition= new Vector3(0,0,0);
     private Vector3 spawnPositionRoad= new Vector3(0,0,0);

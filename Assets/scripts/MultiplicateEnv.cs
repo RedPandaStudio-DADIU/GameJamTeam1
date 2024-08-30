@@ -10,7 +10,7 @@ public class MultiplicateEnv : MonoBehaviour
     void Start()
     {
         envManager = FindObjectOfType<EnvSpawner>();
-        visibiityLimit= 50f;
+        visibiityLimit= 65f;
     }
 
     public void CheckVisibility(){
@@ -18,7 +18,7 @@ public class MultiplicateEnv : MonoBehaviour
         if (gameObject.tag == "Ground")
         {
             float roadWidth = GetComponent<Collider>().bounds.size.x;
-            if(transform.position.x < Camera.main.transform.position.x - 2* roadWidth)
+            if(transform.position.x < Camera.main.transform.position.x - 3* roadWidth)
             {
                 RepositionRoad(roadWidth);
             }
@@ -49,7 +49,7 @@ public class MultiplicateEnv : MonoBehaviour
 
     void ReplaceBuilding()
     {
-        Debug.LogWarning("BuildingCreation");
+        // Debug.LogWarning("BuildingCreation");
         Destroy(gameObject);
         envManager.SpawnBuilding();
     }
