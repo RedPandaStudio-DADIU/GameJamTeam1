@@ -12,8 +12,8 @@ public class PlayerController : MonoBehaviour
     public bool isOnGround = true;
     public bool gameOver = false;
 
-    public float currentSpeed = 0;  // 
-    public float acceleration = 3f;   // 
+    public float currentSpeed = 0;  
+    public float acceleration = 3f;   
     public float deceleration = 20f; 
     private bool canMove = false;
     private bool speedUp = false;
