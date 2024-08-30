@@ -43,7 +43,6 @@ public class EnvSpawner : MonoBehaviour
     void Update()
     {
         currentPlayerPosition = cyclistTransform.position;
-        currentPlayerPosition = cyclistTransform.position;
 
         if(currentPlayerPosition.x >= ((doorPosition.position.x - initialPlayerPosition.x)/2)){
             startCollapse = true;
@@ -65,13 +64,13 @@ public class EnvSpawner : MonoBehaviour
         }
     }
 
-    public void CollapseRoad(){
-        // use the small road prefab
-        // get player initial position, current position and door position
-        // when the player is halfway between start and the door - start the collapse
+    // public void CollapseRoad(){
+    //     // use the small road prefab
+    //     // get player initial position, current position and door position
+    //     // when the player is halfway between start and the door - start the collapse
         
 
-    }
+    // }
 
     public void SpawnBuilding(){
         GameObject buildingPrefab = buildingPrefabs[Random.Range(0, buildingPrefabs.Length)];
@@ -112,6 +111,11 @@ public class EnvSpawner : MonoBehaviour
         this.roadVisibiityLimit = visibiityLimit;
     }
 
+    public bool GetStartCollapse(){
+        return this.startCollapse;
+    }
 
-
+    public Quaternion GetRoadRotation(){
+        return this.streetPrefab.transform.rotation;
+    }
 }

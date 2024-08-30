@@ -6,6 +6,7 @@ public class MultiplicateEnv : MonoBehaviour
 {
     [SerializeField] EnvSpawner envManager;
     [SerializeField] float visibiityLimit;
+    private bool isCollapsing = false;
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +23,30 @@ public class MultiplicateEnv : MonoBehaviour
             float roadVisibiityLimit =  envManager.GetRoadVisibility();
             if(transform.position.x < Camera.main.transform.position.x - roadVisibiityLimit* roadWidth)
             {
-                RepositionRoad(roadWidth);
+                if(!envManager.GetStartCollapse()){
+                    RepositionRoad(roadWidth);
+                } if(envManager.GetStartCollapse() && !isCollapsing){
+                    CollapseRoad();
+                    isCollapsing = true;
+                }
+
+                if(transform.position.y < -50f){
+                    isCollapsing = false;
+                    RepositionRoad(roadWidth);
+                }
+
+
+                // RepositionRoad(roadWidth);
+                // if(envManager.GetStartCollapse() && !isCollapsing){
+                //     CollapseRoad();
+                //     isCollapsing = true;
+                // }
+
+                // if(transform.position.x < -200f){
+                //     isCollapsing = false;
+                //     RepositionRoad(roadWidth);
+                // }
+
             }
         }
         else if (gameObject.tag == "Building")
@@ -44,15 +68,15 @@ public class MultiplicateEnv : MonoBehaviour
 
     void CollapseRoad(){
         AddRigidbody();
-        StartCoroutine(DelayReposition(10f));
-        RemoveRigidbody();
+        StartCoroutine(DelayReposition(100f));
     }
     
     void RepositionRoad(float roadWidth)
     {
-        
+        RemoveRigidbody();
         Vector3 newPosition = envManager.GetStreetSpawnPosition();
         transform.position = newPosition;
+        transform.rotation = envManager.GetRoadRotation();
         envManager.SetStreetSpawnPosition(roadWidth);
     }
 
