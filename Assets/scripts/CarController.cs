@@ -32,6 +32,7 @@ public class CarController : MonoBehaviour
     private bool isSpecialCarSpawned = false;
     private int startNormalCarSpawned = 0;
     private int startSpecialCarSpawned = 0;
+    private int numberOfCarsStart = 4;
 
 
     void Start()
@@ -52,7 +53,9 @@ public class CarController : MonoBehaviour
         envManager = FindObjectOfType<EnvSpawner>();
         minReactionDistance = 10.0f;
         maxReactionDistance = 25.0f;
-        positionY = 4.25f;
+        positionY = 4.5f;
+
+        isNormalCarSpawned = true;
 
     }
 
@@ -78,10 +81,15 @@ public class CarController : MonoBehaviour
             stopInstantiating = false;
         }
 
-        if(startNormalCarSpawned == 3){
+
+        if(startNormalCarSpawned == numberOfCarsStart && startSpecialCarSpawned==numberOfCarsStart){
+            isNormalCarSpawned = true;
+            isSpecialCarSpawned = true;
+        } else if(startNormalCarSpawned == numberOfCarsStart){
             isNormalCarSpawned = false;
             isSpecialCarSpawned = true;
         }
+
     }
 
      IEnumerator SpawnCarsRandomly()
@@ -109,12 +117,16 @@ public class CarController : MonoBehaviour
     }
 
     private void SpawnCar(){
-        if (!IsCloseToFinish()){
+        if (!IsCloseToFinish() && isNormalCarSpawned){
             Vector3 nextRoadSpawnPos = envManager.GetSpawnPosition();
             nextRoadSpawnPos.x = nextRoadSpawnPos.x - 20.0f;
             nextRoadSpawnPos.y = positionY;
             nextRoadSpawnPos.z = cyclistTransform.position.z;
             GameObject instance = Instantiate(car,  nextRoadSpawnPos, Quaternion.identity);
+
+            if (startNormalCarSpawned < numberOfCarsStart){
+                startNormalCarSpawned++;
+            }
         }
     }
 
@@ -125,6 +137,9 @@ public class CarController : MonoBehaviour
             if (!IsCloseToFinish(30.0f)){
                 spawnPosition.y = positionY;
                 GameObject instance = Instantiate(specialCar, spawnPosition, Quaternion.Euler(0, -90, 0));
+                if (startSpecialCarSpawned < numberOfCarsStart){
+                    startSpecialCarSpawned++;
+                }
             }
         }
     }
