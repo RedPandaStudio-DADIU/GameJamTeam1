@@ -202,6 +202,7 @@ GameObject:
   - component: {fileID: 764529055}
   - component: {fileID: 764529054}
   - component: {fileID: 764529053}
+  - component: {fileID: 764529057}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -238,7 +239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -293,6 +294,24 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &764529057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 764529052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2f402a3ee8d2d64aa24869b0e5aac3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 764529055}
+  textElement: {fileID: 1626290519}
+  buttonElement: {fileID: 1556927592}
+  imageElement: {fileID: 0}
+  referenceResolution: {x: 1920, y: 1080}
+  widthHeightRatioThreshold: 1.5
 --- !u!1 &1191395357
 GameObject:
   m_ObjectHideFlags: 0
