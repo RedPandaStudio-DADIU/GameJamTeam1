@@ -14,8 +14,10 @@ public class PlayerController : MonoBehaviour
 
     public float currentSpeed = 0;  // 
     public float acceleration = 3f;   // 
-    public float deceleration = 3f; 
+    public float deceleration = 20f; 
     private bool canMove = false;
+    private bool speedUp = false;
+
 
     public Vector3 startPosition;
 
@@ -29,16 +31,18 @@ public class PlayerController : MonoBehaviour
         playerRb.constraints |= RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
         canMove = true;
 
-         jumpForce=35;
-         moveSpeed=10;
-         gravityModifier=3;
+        jumpForce=30;
+        moveSpeed=15;
+        gravityModifier=3;
+        acceleration = 10f;
+        deceleration = 45f;
 
         gameOver = false;
         isOnGround = true;
         currentSpeed = 0;
         Time.timeScale = 1;
 
-       startPosition = new Vector3(-45, 2, 0);
+       startPosition = new Vector3(400, 2, -6);
         transform.position = startPosition;
         //playerAudio = GetComponent<AudioSource>();
        // playerRb.AddForce(Vector3.up * 1000);
@@ -57,11 +61,23 @@ public class PlayerController : MonoBehaviour
             }
 
             float horizontalInput = Input.GetAxis("Horizontal");
+            float verticalInput = Input.GetAxis("Vertical");
+
             //playerRb.velocity = new Vector2(horizontalInput * moveSpeed, playerRb.velocity.y);
             if (horizontalInput > 0)
             {
                 // speed up
-                currentSpeed = Mathf.MoveTowards(currentSpeed, moveSpeed, acceleration * Time.deltaTime);
+                if (verticalInput > 0){
+                    currentSpeed = Mathf.MoveTowards(currentSpeed, 2*moveSpeed, 5*acceleration * Time.deltaTime);
+                    speedUp = true;
+                }else{
+                    if (speedUp){
+                        currentSpeed = Mathf.MoveTowards(currentSpeed, 0, 20*deceleration * Time.deltaTime);
+                        speedUp = false;
+                    } else{
+                        currentSpeed = Mathf.MoveTowards(currentSpeed, moveSpeed, acceleration * Time.deltaTime);
+                    }
+                }
             }
             else if (horizontalInput < 0)
             {

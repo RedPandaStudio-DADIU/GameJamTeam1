@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6199656797303084541}
   - component: {fileID: 8958919223655295794}
+  - component: {fileID: 3970850510106910565}
   m_Layer: 0
   m_Name: StreetLampLight
   m_TagString: Untagged
@@ -94,3 +95,16 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &3970850510106910565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1013248004498690097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af698d8441b55b84f96c4ea20514ffff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lampManager: {fileID: 0}

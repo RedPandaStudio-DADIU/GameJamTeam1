@@ -10,12 +10,15 @@ public class CarController : MonoBehaviour
     [SerializeField] GameObject specialCar;
     [SerializeField] float startDelay = 3.0f;
     [SerializeField] float minIntervalTime = 4.0f;
-    [SerializeField] float maxIntervalTime = 25.0f;
+    [SerializeField] float maxIntervalTime = 6.0f;
     [SerializeField] float maxIntervalTimeSpecialCar = 6.0f;
-    [SerializeField] float minReactionDistance = 7.0f;
-    [SerializeField] float maxReactionDistance = 15.0f;
+    [SerializeField] float minReactionDistance = 10.0f;
+    [SerializeField] float maxReactionDistance = 25.0f;
     [SerializeField] float startDistance = 5.0f;
     [SerializeField] float collisionRadius = 10.0f;
+    [SerializeField] EnvSpawner envManager;
+    [SerializeField] float positionY;
+
     private Transform cyclistTransform;
     private Transform doorPosition;
     private GameObject player;
@@ -24,6 +27,7 @@ public class CarController : MonoBehaviour
     private Vector3 spawnPosition;
     private Coroutine carCoroutine;
     private Coroutine specialCarCoroutine;
+
 
     void Start()
     {
@@ -39,6 +43,11 @@ public class CarController : MonoBehaviour
         {
             playerController = player.GetComponent<PlayerController>();
         }
+
+        envManager = FindObjectOfType<EnvSpawner>();
+        minReactionDistance = 10.0f;
+        maxReactionDistance = 25.0f;
+        positionY = 4.25f;
 
     }
 
@@ -91,7 +100,11 @@ public class CarController : MonoBehaviour
 
     private void SpawnCar(){
         if (!IsCloseToFinish()){
-            GameObject instance = Instantiate(car);
+            Vector3 nextRoadSpawnPos = envManager.GetSpawnPosition();
+            nextRoadSpawnPos.x = nextRoadSpawnPos.x - 20.0f;
+            nextRoadSpawnPos.y = positionY;
+            nextRoadSpawnPos.z = cyclistTransform.position.z;
+            GameObject instance = Instantiate(car,  nextRoadSpawnPos, Quaternion.identity);
         }
     }
 
@@ -100,6 +113,7 @@ public class CarController : MonoBehaviour
         if (!stopInstantiating)
         {
             if (!IsCloseToFinish(10.0f)){
+                spawnPosition.y = positionY;
                 GameObject instance = Instantiate(specialCar, spawnPosition, Quaternion.Euler(0, -90, 0));
             }
         }
