@@ -10,7 +10,7 @@ public class UICanvas : MonoBehaviour
 
     public Canvas canvas;
     public TextMeshProUGUI textElement;
-    public Button buttonElement; // 新增的按钮元素
+    public Button[] buttonElements; // 新增的按钮元素
     public RectTransform imageElement; // 如果没有图片，可以将这个保留为空或移除
 
     public Vector2 referenceResolution = new Vector2(1920, 1080);
@@ -59,23 +59,41 @@ public class UICanvas : MonoBehaviour
 
         // 设置字体大小范围
         textElement.fontSizeMin = 12;
-        textElement.fontSizeMax = 80;
+        textElement.fontSizeMax = 90;
 
         // 动态调整文本的位置和大小
         if (textElement != null)
         {
             RectTransform textRect = textElement.GetComponent<RectTransform>();
-            textRect.anchoredPosition = new Vector2(referenceResolution.x * 0.1f * screenWidthRatio, referenceResolution.y * 0.2f * screenHeightRatio);
-            textRect.sizeDelta = new Vector2(referenceResolution.x * 0.4f * screenWidthRatio, referenceResolution.y * 0.2f * screenHeightRatio);
-       }
+            textRect.anchorMin = new Vector2(0.5f, 0.5f); // 将锚点设置为屏幕中心
+            textRect.anchorMax = new Vector2(0.5f, 0.5f);
+            textRect.pivot = new Vector2(0.5f, 0.5f); // 将轴心设置在对象的中心
+            textRect.anchoredPosition = new Vector2(0, Screen.height * 0.15f); // 位置调整到中上方
+            textRect.sizeDelta = new Vector2(referenceResolution.x * 0.8f * screenWidthRatio, referenceResolution.y * 0.2f * screenHeightRatio); // 扩大文本区域
+ }
 
         // 动态调整按钮的位置和大小
-        if (buttonElement != null)
+        if (buttonElements != null)
         {
-            RectTransform buttonRect = buttonElement.GetComponent<RectTransform>();
-            buttonRect.anchoredPosition = new Vector2(referenceResolution.x * 0.2f * screenWidthRatio, -referenceResolution.y * 0.2f * screenHeightRatio);
-            buttonRect.sizeDelta = new Vector2(referenceResolution.x * 0.2f * screenWidthRatio, referenceResolution.y * 0.1f * screenHeightRatio);
-       }
+            for (int i = 0; i < buttonElements.Length; i++)
+            {
+                RectTransform buttonRect = buttonElements[i].GetComponent<RectTransform>();
+                buttonRect.anchorMin = new Vector2(0.5f, 0.5f); // 将锚点设置为屏幕中心
+                buttonRect.anchorMax = new Vector2(0.5f, 0.5f);
+                buttonRect.pivot = new Vector2(0.5f, 0.5f); // 将轴心设置在对象的中心
+                buttonRect.anchoredPosition = new Vector2(0, Screen.height * 0.05f - i * (Screen.height * 0.12f)); // 根据索引向下排列
+                buttonRect.sizeDelta = new Vector2(referenceResolution.x * 0.3f * screenWidthRatio, referenceResolution.y * 0.1f * screenHeightRatio);
+
+                // 动态调整按钮文字的字体大小
+                TextMeshProUGUI buttonText = buttonElements[i].GetComponentInChildren<TextMeshProUGUI>();
+                if (buttonText != null)
+                {
+                    buttonText.enableAutoSizing = true;
+                    buttonText.fontSizeMin = 12;
+                    buttonText.fontSizeMax = 60;
+                }
+             }
+        }
 
         // 动态调整图片的位置和大小（如果存在）
         if (imageElement != null)
