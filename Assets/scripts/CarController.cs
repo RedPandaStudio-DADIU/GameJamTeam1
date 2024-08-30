@@ -112,7 +112,7 @@ public class CarController : MonoBehaviour
 
         if (!stopInstantiating)
         {
-            if (!IsCloseToFinish(10.0f)){
+            if (!IsCloseToFinish(30.0f)){
                 spawnPosition.y = positionY;
                 GameObject instance = Instantiate(specialCar, spawnPosition, Quaternion.Euler(0, -90, 0));
             }
