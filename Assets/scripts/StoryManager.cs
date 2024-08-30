@@ -78,6 +78,23 @@ public class StoryManager : MonoBehaviour
         {
             storyImages[i].gameObject.SetActive(i == currentIndex);
         }
+        RectTransform imageRect = storyImages[currentIndex].GetComponent<RectTransform>();
+        imageRect.anchorMin = new Vector2(0.5f, 0.5f); // 将锚点设置为屏幕中心
+        imageRect.anchorMax = new Vector2(0.5f, 0.5f);
+        imageRect.pivot = new Vector2(0.5f, 0.5f); // 将中心点设置为对象的中心
+        imageRect.anchoredPosition = Vector2.zero; // 图片居中
+        imageRect.sizeDelta = new Vector2(Screen.width * 0.8f, Screen.height * 0.6f); // 占据屏幕 80% 的宽度和 60% 的高度
+
+
+
         storyText.text = storyTexts[currentIndex];
+        RectTransform textRect = storyText.GetComponent<RectTransform>();
+        textRect.anchorMin = new Vector2(0.5f, 0); // 锚点设置在屏幕底部中间
+        textRect.anchorMax = new Vector2(0.5f, 0);
+        textRect.pivot = new Vector2(0.5f, 0.5f); // 将中心点设置为对象的中心
+        textRect.anchoredPosition = new Vector2(40, 50); // 字幕稍微向上移动一点，以避免太靠近屏幕边缘
+        textRect.sizeDelta = new Vector2(Screen.width * 0.8f, Screen.height * 0.1f); // 设置字幕框的大小
+      
+
     }
 }
