@@ -92,9 +92,11 @@ public class StoryManager : MonoBehaviour
         textRect.anchorMin = new Vector2(0.5f, 0); // 锚点设置在屏幕底部中间
         textRect.anchorMax = new Vector2(0.5f, 0);
         textRect.pivot = new Vector2(0.5f, 0.5f); // 将中心点设置为对象的中心
-        textRect.anchoredPosition = new Vector2(40, 50); // 字幕稍微向上移动一点，以避免太靠近屏幕边缘
+        textRect.anchoredPosition = new Vector2(0, 50); // 字幕稍微向上移动一点，以避免太靠近屏幕边缘
         textRect.sizeDelta = new Vector2(Screen.width * 0.8f, Screen.height * 0.1f); // 设置字幕框的大小
       
+storyText.alignment = TextAlignmentOptions.Center; // 这将使文本内容居中对齐
+    storyText.text = storyTexts[currentIndex];
 
     }
 }

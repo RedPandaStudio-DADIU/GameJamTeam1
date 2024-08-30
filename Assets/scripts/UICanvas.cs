@@ -49,39 +49,39 @@ public class UICanvas : MonoBehaviour
 
     void AdjustUIElements()
     {
-        float screenWidth = Screen.width;
-        float screenHeight = Screen.height;
+       float screenWidthRatio = Screen.width / referenceResolution.x;
+        float screenHeightRatio = Screen.height / referenceResolution.y;
 
         // 动态调整文本的位置和大小
         if (textElement != null)
         {
             RectTransform textRect = textElement.GetComponent<RectTransform>();
-            textRect.anchoredPosition = new Vector2(screenWidth * 0.1f, screenHeight * 0.2f);
-            textRect.sizeDelta = new Vector2(screenWidth * 0.4f, screenHeight * 0.2f);
-        }
+            textRect.anchoredPosition = new Vector2(referenceResolution.x * 0.1f * screenWidthRatio, referenceResolution.y * 0.2f * screenHeightRatio);
+            textRect.sizeDelta = new Vector2(referenceResolution.x * 0.4f * screenWidthRatio, referenceResolution.y * 0.2f * screenHeightRatio);
+       }
 
         // 动态调整按钮的位置和大小
         if (buttonElement != null)
         {
             RectTransform buttonRect = buttonElement.GetComponent<RectTransform>();
-            buttonRect.anchoredPosition = new Vector2(screenWidth * 0.2f, -screenHeight * 0.2f);
-            buttonRect.sizeDelta = new Vector2(screenWidth * 0.2f, screenHeight * 0.1f);
-        }
+            buttonRect.anchoredPosition = new Vector2(referenceResolution.x * 0.2f * screenWidthRatio, -referenceResolution.y * 0.2f * screenHeightRatio);
+            buttonRect.sizeDelta = new Vector2(referenceResolution.x * 0.2f * screenWidthRatio, referenceResolution.y * 0.1f * screenHeightRatio);
+       }
 
         // 动态调整图片的位置和大小（如果存在）
         if (imageElement != null)
         {
-            imageElement.anchoredPosition = new Vector2(screenWidth * -0.2f, screenHeight * 0.1f);
-            imageElement.sizeDelta = new Vector2(screenWidth * 0.2f, screenHeight * 0.2f);
-        }
+            imageElement.anchoredPosition = new Vector2(referenceResolution.x * -0.2f * screenWidthRatio, referenceResolution.y * 0.1f * screenHeightRatio);
+              imageElement.sizeDelta = new Vector2(referenceResolution.x * 0.2f * screenWidthRatio, referenceResolution.y * 0.2f * screenHeightRatio);
+       }
 
-        AdjustUIForAspectRatio(screenWidth, screenHeight);
+        AdjustUIForAspectRatio(screenWidthRatio, screenHeightRatio);
     }
 
 
-    void AdjustUIForAspectRatio(float screenWidth, float screenHeight)
+    void AdjustUIForAspectRatio(float screenWidthRatio, float screenHeightRatio)
     {
-        float aspectRatio = screenWidth / screenHeight;
+        float aspectRatio = (float)Screen.width / Screen.height;
 
         // 基于屏幕比例调整某个 UI 元素的位置或大小
         if (aspectRatio > widthHeightRatioThreshold)
