@@ -28,6 +28,11 @@ public class CarController : MonoBehaviour
     private Coroutine carCoroutine;
     private Coroutine specialCarCoroutine;
 
+    private bool isNormalCarSpawned = false;
+    private bool isSpecialCarSpawned = false;
+    private int startNormalCarSpawned = 0;
+    private int startSpecialCarSpawned = 0;
+
 
     void Start()
     {
@@ -72,6 +77,11 @@ public class CarController : MonoBehaviour
         } else{
             stopInstantiating = false;
         }
+
+        if(startNormalCarSpawned == 3){
+            isNormalCarSpawned = false;
+            isSpecialCarSpawned = true;
+        }
     }
 
      IEnumerator SpawnCarsRandomly()
@@ -110,7 +120,7 @@ public class CarController : MonoBehaviour
 
      private void SpawnSpecialCar(){
 
-        if (!stopInstantiating)
+        if (!stopInstantiating && isSpecialCarSpawned)
         {
             if (!IsCloseToFinish(30.0f)){
                 spawnPosition.y = positionY;
