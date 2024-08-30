@@ -46,7 +46,7 @@ public class EnvSpawner : MonoBehaviour
     public void SpawnBuilding(){
         GameObject buildingPrefab = buildingPrefabs[Random.Range(0, buildingPrefabs.Length)];
         GameObject building = Instantiate(buildingPrefab, spawnPosition, buildingPrefab.transform.rotation);
-        Debug.Log($"{spawnPosition}: position of the building.");
+        // Debug.Log($"{spawnPosition}: position of the building.");
         Transform firstChild = building.transform.GetChild(0);  
         GameObject childBuilding = firstChild.gameObject;
         
