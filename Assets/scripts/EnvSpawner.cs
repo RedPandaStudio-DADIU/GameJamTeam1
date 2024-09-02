@@ -50,7 +50,7 @@ public class EnvSpawner : MonoBehaviour
 
         if (startCollapse){
             // CollapseRoad();
-            roadVisibiityLimit -= 0.1f*Time.deltaTime;
+            roadVisibiityLimit -= 0.04f*Time.deltaTime;
         }
     }
 

@@ -7,19 +7,28 @@ public class MultiplicateEnv : MonoBehaviour
     [SerializeField] EnvSpawner envManager;
     [SerializeField] float visibiityLimit;
     private bool isCollapsing = false;
+    private Vector3 initialPosition;
+
+    private float roadWidth;
 
     // Start is called before the first frame update
     void Start()
     {
         envManager = FindObjectOfType<EnvSpawner>();
         visibiityLimit= 65f;
+        initialPosition = transform.position;
+        if (gameObject.tag == "Ground")
+        {
+            roadWidth = GetComponent<Collider>().bounds.size.x;
+        }
     }
 
     public void CheckVisibility(){
 
         if (gameObject.tag == "Ground")
         {
-            float roadWidth = GetComponent<Collider>().bounds.size.x;
+            // float roadWidth = GetComponent<Collider>().bounds.size.x;
+            Debug.Log("Road width: " + roadWidth);
             float roadVisibiityLimit =  envManager.GetRoadVisibility();
             if(transform.position.x < Camera.main.transform.position.x - roadVisibiityLimit* roadWidth)
             {
@@ -74,10 +83,15 @@ public class MultiplicateEnv : MonoBehaviour
     void RepositionRoad(float roadWidth)
     {
         RemoveRigidbody();
+        // transform.position = initialPosition;
         Vector3 newPosition = envManager.GetStreetSpawnPosition();
+        Debug.Log("New position from env Manager" + newPosition);
         transform.position = newPosition;
         transform.rotation = envManager.GetRoadRotation();
         envManager.SetStreetSpawnPosition(roadWidth);
+        Vector3 testPosition = envManager.GetStreetSpawnPosition();
+        Debug.Log("Texting next position from env Manager" + testPosition);
+
     }
 
     IEnumerator DelayReposition(float delay)
