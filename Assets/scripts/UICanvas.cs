@@ -10,11 +10,14 @@ public class UICanvas : MonoBehaviour
 
     public Canvas canvas;
     public TextMeshProUGUI textElement;
-    public Button buttonElement; // 新增的按钮元素
+    public Button[] buttonElements; // 新增的按钮元素
     public RectTransform imageElement; // 如果没有图片，可以将这个保留为空或移除
 
     public Vector2 referenceResolution = new Vector2(1920, 1080);
     public float widthHeightRatioThreshold = 1.5f; // 例如16:9的宽高比
+
+
+ 
 
     // Start is called before the first frame update
     void Start()
@@ -49,66 +52,59 @@ public class UICanvas : MonoBehaviour
 
     void AdjustUIElements()
     {
-        float screenWidth = Screen.width;
-        float screenHeight = Screen.height;
+       float screenWidthRatio = Screen.width / referenceResolution.x;
+        float screenHeightRatio = Screen.height / referenceResolution.y;
+
+   textElement.enableAutoSizing = true;
+
+        // 设置字体大小范围
+        textElement.fontSizeMin = 12;
+        textElement.fontSizeMax = 90;
 
         // 动态调整文本的位置和大小
         if (textElement != null)
         {
             RectTransform textRect = textElement.GetComponent<RectTransform>();
-            textRect.anchoredPosition = new Vector2(screenWidth * 0.1f, screenHeight * 0.2f);
-            textRect.sizeDelta = new Vector2(screenWidth * 0.4f, screenHeight * 0.2f);
-        }
+            textRect.anchorMin = new Vector2(0.5f, 0.5f); // 将锚点设置为屏幕中心
+            textRect.anchorMax = new Vector2(0.5f, 0.5f);
+            textRect.pivot = new Vector2(0.5f, 0.5f); // 将轴心设置在对象的中心
+            textRect.anchoredPosition = new Vector2(0, Screen.height * 0.15f); // 位置调整到中上方
+            textRect.sizeDelta = new Vector2(referenceResolution.x * 0.8f * screenWidthRatio, referenceResolution.y * 0.2f * screenHeightRatio); // 扩大文本区域
+ }
 
         // 动态调整按钮的位置和大小
-        if (buttonElement != null)
+        if (buttonElements != null)
         {
-            RectTransform buttonRect = buttonElement.GetComponent<RectTransform>();
-            buttonRect.anchoredPosition = new Vector2(screenWidth * 0.2f, -screenHeight * 0.2f);
-            buttonRect.sizeDelta = new Vector2(screenWidth * 0.2f, screenHeight * 0.1f);
+            for (int i = 0; i < buttonElements.Length; i++)
+            {
+                RectTransform buttonRect = buttonElements[i].GetComponent<RectTransform>();
+                buttonRect.anchorMin = new Vector2(0.5f, 0.5f); // 将锚点设置为屏幕中心
+                buttonRect.anchorMax = new Vector2(0.5f, 0.5f);
+                buttonRect.pivot = new Vector2(0.5f, 0.5f); // 将轴心设置在对象的中心
+                buttonRect.anchoredPosition = new Vector2(0, Screen.height * 0.05f - i * (Screen.height * 0.12f)); // 根据索引向下排列
+                buttonRect.sizeDelta = new Vector2(referenceResolution.x * 0.3f * screenWidthRatio, referenceResolution.y * 0.1f * screenHeightRatio);
+
+                // 动态调整按钮文字的字体大小
+                TextMeshProUGUI buttonText = buttonElements[i].GetComponentInChildren<TextMeshProUGUI>();
+                if (buttonText != null)
+                {
+                    buttonText.enableAutoSizing = true;
+                    buttonText.fontSizeMin = 12;
+                    buttonText.fontSizeMax = 60;
+                }
+             }
         }
 
         // 动态调整图片的位置和大小（如果存在）
         if (imageElement != null)
         {
-            imageElement.anchoredPosition = new Vector2(screenWidth * -0.2f, screenHeight * 0.1f);
-            imageElement.sizeDelta = new Vector2(screenWidth * 0.2f, screenHeight * 0.2f);
-        }
+            imageElement.anchoredPosition = new Vector2(referenceResolution.x * -0.2f * screenWidthRatio, referenceResolution.y * 0.1f * screenHeightRatio);
+              imageElement.sizeDelta = new Vector2(referenceResolution.x * 0.2f * screenWidthRatio, referenceResolution.y * 0.2f * screenHeightRatio);
+       }
 
-        AdjustUIForAspectRatio(screenWidth, screenHeight);
+        //AdjustUIForAspectRatio(screenWidthRatio, screenHeightRatio);
     }
 
 
-    void AdjustUIForAspectRatio(float screenWidth, float screenHeight)
-    {
-        float aspectRatio = screenWidth / screenHeight;
-
-        // 基于屏幕比例调整某个 UI 元素的位置或大小
-        if (aspectRatio > widthHeightRatioThreshold)
-        {
-            // 对于宽屏（例如16:9），可能需要更改UI布局
-            if (textElement != null)
-            {
-                textElement.fontSize = 80;
-            }
-            if (buttonElement != null)
-            {
-                // 调整按钮的字体大小
-                buttonElement.GetComponentInChildren<TextMeshProUGUI>().fontSize = 60;
-            }
-        }
-        else
-        {
-            // 对于窄屏（例如4:3），可能需要更改其他布局
-            if (textElement != null)
-            {
-                textElement.fontSize = 80;
-            }
-            if (buttonElement != null)
-            {
-                // 调整按钮的字体大小
-                buttonElement.GetComponentInChildren<TextMeshProUGUI>().fontSize = 60;
-            }
-        }
-    }
+    
 }

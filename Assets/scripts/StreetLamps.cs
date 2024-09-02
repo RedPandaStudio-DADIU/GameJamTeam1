@@ -6,7 +6,7 @@ public class StreetLamps : MonoBehaviour
 {
     public GameObject lightPrefab;     
     public int numberOfLights = 10;    
-    public float spacing = 30f;        
+    public float spacing = 35f;        
     public float lightDuration = 5f;   
 
     private List<GameObject> lights = new List<GameObject>();
@@ -18,7 +18,7 @@ public class StreetLamps : MonoBehaviour
         
         for (int i = 0; i < numberOfLights; i++)
         {
-            position = new Vector3(i * spacing, 0, -20); 
+            position = new Vector3(i * spacing, 20, -20); 
             GameObject light = Instantiate(lightPrefab, position, Quaternion.identity);
             lights.Add(light);
             instances++;
@@ -36,7 +36,7 @@ public class StreetLamps : MonoBehaviour
 
      public void IncreasePosition(){
         instances++;
-        this.position= new Vector3(instances * spacing, 0, -20); 
+        this.position= new Vector3(instances * spacing, 20, -20); 
     }
 
 
