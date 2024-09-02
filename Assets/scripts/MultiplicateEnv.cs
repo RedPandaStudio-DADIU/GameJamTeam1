@@ -58,7 +58,7 @@ public class MultiplicateEnv : MonoBehaviour
 
             }
         }
-        else if (gameObject.tag == "Building")
+        else if (gameObject.tag == "Building"||gameObject.tag == "Crossroad")
         {
             if(transform.position.x < Camera.main.transform.position.x - visibiityLimit)
             {
@@ -125,6 +125,12 @@ public class MultiplicateEnv : MonoBehaviour
     {
         // Debug.LogWarning("BuildingCreation");
         Destroy(gameObject);
-        envManager.SpawnBuilding();
+        float prob = Random.Range(0f, 1f);
+        if(prob <= 0.1){
+            envManager.SpawnCrossroad();
+        } else{
+            envManager.SpawnBuilding();
+        }
+        // envManager.SpawnBuilding();
     }
 }

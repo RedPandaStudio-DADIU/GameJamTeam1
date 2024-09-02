@@ -7,12 +7,16 @@ public class EnvSpawner : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] GameObject[] buildingPrefabs;
     [SerializeField] GameObject streetPrefab;
+    [SerializeField] GameObject crossStreetPrefab;
+
     [SerializeField] int numberOfStreetsInitial = 15;
+    // [SerializeField] int numberOfCrossInitial = 2;
+
     [SerializeField] int numberOfBuildingsInitial = 12;
 
     private Vector3 spawnPosition= new Vector3(0,0,0);
     private Vector3 spawnPositionRoad= new Vector3(0,0,0);
-
+    // private Vector3 spawnCrossPosition= new Vector3(0,0,0);
     private Vector3 initialPlayerPosition;
     private Vector3 currentPlayerPosition;
     private Transform doorPosition;
@@ -27,13 +31,15 @@ public class EnvSpawner : MonoBehaviour
         initialPlayerPosition = cyclistTransform.position;
         doorPosition = GameObject.FindWithTag("Finish").transform; 
 
-        for(int i =0; i<numberOfStreetsInitial; i++){
-            SpawnStreet();
-        }
+        InitializeObjects();
 
-        for(int i=0; i<numberOfBuildingsInitial; i++){
-            SpawnBuilding();
-        }
+        // for(int i =0; i<numberOfStreetsInitial; i++){
+        //     SpawnStreet();
+        // }
+
+        // for(int i=0; i<numberOfBuildingsInitial; i++){
+        //     SpawnBuilding();
+        // }
         
         roadVisibiityLimit = 3;
 
@@ -54,6 +60,18 @@ public class EnvSpawner : MonoBehaviour
         }
     }
 
+    public void InitializeObjects(){
+        for(int i =0; i<numberOfStreetsInitial; i++){
+            if(i%4==0){
+                SpawnCrossroad();
+            }
+            SpawnStreet();
+        }
+
+        for(int i=0; i<numberOfBuildingsInitial; i++){
+            SpawnBuilding();
+        }
+    }
 
     public void SpawnStreet(){
         GameObject street = Instantiate(streetPrefab, spawnPositionRoad,streetPrefab.transform.rotation);
@@ -63,14 +81,28 @@ public class EnvSpawner : MonoBehaviour
             spawnPositionRoad += new Vector3(streetWidth, 0, 0);
         }
     }
+   public void SpawnCrossroad(){
+        Vector3 crossPosition = new Vector3(spawnPosition.x, -0.75f, spawnPosition.z);
+        GameObject cross = Instantiate(crossStreetPrefab, crossPosition, Quaternion.identity);
 
-    // public void CollapseRoad(){
-    //     // use the small road prefab
-    //     // get player initial position, current position and door position
-    //     // when the player is halfway between start and the door - start the collapse
+
+        Transform firstChild = cross.transform.GetChild(0);  
+        GameObject child = firstChild.gameObject;
         
+        Collider crossCollider = child.GetComponent<Collider>();
+        if(crossCollider != null){
+            float crossWidth = crossCollider.bounds.size.x;
+            spawnPosition += new Vector3(crossWidth, 0, 0);
+        }
 
-    // }
+
+        // Collider crossCollider = cross.GetComponent<Collider>();
+        // if(crossCollider != null){
+        //     float crossWidth = crossCollider.bounds.size.x;
+        //     spawnPosition += new Vector3(crossWidth, 0, 0);
+        // }
+    }
+
 
     public void SpawnBuilding(){
         GameObject buildingPrefab = buildingPrefabs[Random.Range(0, buildingPrefabs.Length)];
@@ -94,6 +126,11 @@ public class EnvSpawner : MonoBehaviour
     public Vector3 GetStreetSpawnPosition(){
         return this.spawnPositionRoad;
     }
+
+    // public Vector3 GetCrossSpawnPosition(){
+    //     return this.spawnCrossPosition;
+    // }
+
 
     public void SetSpawnPosition(float position){
         this.spawnPosition += new Vector3(position, 0, 0);

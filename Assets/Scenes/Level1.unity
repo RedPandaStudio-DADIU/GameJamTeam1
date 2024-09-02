@@ -479,11 +479,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildingPrefabs:
-  - {fileID: 4791207939546982386, guid: 71c5c92f71898e54786b1cb016a73773, type: 3}
-  - {fileID: 4141986607745389802, guid: 70197bca85f89e845b8bb9b8bdff8558, type: 3}
+  - {fileID: 7020300280465678901, guid: 3088a34ebbde28a49a7dc9fbd8332829, type: 3}
+  - {fileID: 401003722917335096, guid: 015fc413a23598e49a79e726ead457fb, type: 3}
+  - {fileID: 7564883342720755365, guid: fbdfd5cdf51bffd42b7764550f86fc6f, type: 3}
+  - {fileID: 6103066832711478006, guid: 154aea0b4df41fd49b77118e1432e83c, type: 3}
+  - {fileID: 4405919570643362420, guid: aff01220128a71f469db9d7f91c2447e, type: 3}
   streetPrefab: {fileID: 7743955710392576570, guid: 845d8266c7bf4584b97ce5f62292be8c, type: 3}
+  crossStreetPrefab: {fileID: 6625738527867660189, guid: 756607a83b7fac643b3888f1e3529e23, type: 3}
   numberOfStreetsInitial: 15
   numberOfBuildingsInitial: 10
+  roadVisibiityLimit: 0
 --- !u!4 &558292027
 Transform:
   m_ObjectHideFlags: 0
