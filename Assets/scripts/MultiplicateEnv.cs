@@ -125,6 +125,10 @@ public class MultiplicateEnv : MonoBehaviour
     void ReplaceBuilding()
     {
         // Debug.LogWarning("BuildingCreation");
+        if(envManager.specialCarSpawningPoints.Contains(gameObject)){
+            envManager.specialCarSpawningPoints.Remove(gameObject);
+        }
+
         Destroy(gameObject);
         float prob = Random.Range(0f, 1f);
         if(prob <= 0.1){

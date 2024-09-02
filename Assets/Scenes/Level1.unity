@@ -324,13 +324,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 380245526}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.078728564, y: 0.03693678, z: 0.005732625, w: 0.9961951}
-  m_LocalPosition: {x: 402.1158, y: 9, z: -36}
+  m_LocalRotation: {x: 0.13918959, y: 0.03651963, z: 0.007969176, w: 0.9895601}
+  m_LocalPosition: {x: 402.1158, y: 14, z: -40}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 9, y: 4.326, z: 1}
+  m_LocalEulerAnglesHint: {x: 15.956, y: 4.444, z: 1.546}
 --- !u!114 &380245530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -484,10 +484,11 @@ MonoBehaviour:
   - {fileID: 7564883342720755365, guid: fbdfd5cdf51bffd42b7764550f86fc6f, type: 3}
   - {fileID: 6103066832711478006, guid: 154aea0b4df41fd49b77118e1432e83c, type: 3}
   - {fileID: 4405919570643362420, guid: aff01220128a71f469db9d7f91c2447e, type: 3}
-  streetPrefab: {fileID: 7291582778481517604, guid: b9670f76ae8ed7a41a1f0597a980963b, type: 3}
+  streetPrefab: {fileID: 1268113662864153835, guid: 0e03595497959ca4f9a229f43b6567e2, type: 3}
   crossStreetPrefab: {fileID: 6625738527867660189, guid: 756607a83b7fac643b3888f1e3529e23, type: 3}
   numberOfStreetsInitial: 15
   numberOfBuildingsInitial: 10
+  specialCarSpawningPoints: []
   roadVisibiityLimit: 0
 --- !u!4 &558292027
 Transform:

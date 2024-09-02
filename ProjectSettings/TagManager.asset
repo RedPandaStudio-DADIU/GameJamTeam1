@@ -9,6 +9,7 @@ TagManager:
   - SpecialCar
   - Building
   - Crossroad
+  - Gate
   layers:
   - Default
   - TransparentFX
