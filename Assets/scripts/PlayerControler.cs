@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
         currentSpeed = 0;
         Time.timeScale = 1;
 
-       startPosition = new Vector3(400, 2, -6);
+       startPosition = new Vector3(400, 2, -17);
         transform.position = startPosition;
         //playerAudio = GetComponent<AudioSource>();
        // playerRb.AddForce(Vector3.up * 1000);

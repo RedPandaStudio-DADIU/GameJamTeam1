@@ -61,30 +61,54 @@ public class EnvSpawner : MonoBehaviour
     }
 
     public void InitializeObjects(){
-        for(int i =0; i<numberOfStreetsInitial; i++){
+        // for(int i =0; i<numberOfStreetsInitial; i++){
+        //             SpawnStreet();
+        // }
+
+        for(int i=0; i<numberOfBuildingsInitial; i++){
             if(i%4==0){
                 SpawnCrossroad();
             }
-            SpawnStreet();
-        }
-
-        for(int i=0; i<numberOfBuildingsInitial; i++){
             SpawnBuilding();
+            // SpawnStreet();
+
         }
     }
 
-    public void SpawnStreet(){
+    public void SpawnStreet(float buildingWidth){
+
         GameObject street = Instantiate(streetPrefab, spawnPositionRoad,streetPrefab.transform.rotation);
-        Collider streetCollider = street.GetComponent<Collider>();
+        // GameObject street = Instantiate(streetPrefab, spawnPositionRoad, Quaternion.identity);
+
+        Transform firstChild = street.transform.GetChild(0);  
+        GameObject child = firstChild.gameObject;
+        Collider streetCollider = child.GetComponent<Collider>();
+
         if(streetCollider != null){
+            Debug.Log("Hello building: "+ buildingWidth);
+
             float streetWidth = streetCollider.bounds.size.x;
-            spawnPositionRoad += new Vector3(streetWidth, 0, 0);
+            float scaleFactor = buildingWidth / streetWidth;
+            street.transform.localScale = new Vector3(
+                street.transform.localScale.x,
+                street.transform.localScale.y,
+                street.transform.localScale.z * scaleFactor
+            );
+    
+
+            Collider newStreetCollider = child.GetComponent<Collider>();
+            if(newStreetCollider != null){
+                float newStreetWidth = newStreetCollider.bounds.size.x;
+                spawnPositionRoad += new Vector3(newStreetWidth, 0, 0);
+                Debug.Log("There's new length! It's: "+ newStreetWidth);
+            }
+        } else {
+            Debug.Log("What the heck");
         }
     }
    public void SpawnCrossroad(){
-        Vector3 crossPosition = new Vector3(spawnPosition.x, -0.75f, spawnPosition.z);
+        Vector3 crossPosition = new Vector3(spawnPosition.x, 0.55f, -7.84f);
         GameObject cross = Instantiate(crossStreetPrefab, crossPosition, Quaternion.identity);
-
 
         Transform firstChild = cross.transform.GetChild(0);  
         GameObject child = firstChild.gameObject;
@@ -94,13 +118,6 @@ public class EnvSpawner : MonoBehaviour
             float crossWidth = crossCollider.bounds.size.x;
             spawnPosition += new Vector3(crossWidth, 0, 0);
         }
-
-
-        // Collider crossCollider = cross.GetComponent<Collider>();
-        // if(crossCollider != null){
-        //     float crossWidth = crossCollider.bounds.size.x;
-        //     spawnPosition += new Vector3(crossWidth, 0, 0);
-        // }
     }
 
 
@@ -114,8 +131,13 @@ public class EnvSpawner : MonoBehaviour
         Collider buildingCollider = childBuilding.GetComponent<Collider>();
         if(buildingCollider != null){
             float buildingWidth = buildingCollider.bounds.size.x;
+            spawnPositionRoad.x = spawnPosition.x;
+
             spawnPosition += new Vector3(buildingWidth, 0, 0);
+            SpawnStreet(buildingWidth);
         }
+
+        
         
     }
 

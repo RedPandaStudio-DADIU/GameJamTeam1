@@ -28,7 +28,7 @@ public class MultiplicateEnv : MonoBehaviour
         if (gameObject.tag == "Ground")
         {
             // float roadWidth = GetComponent<Collider>().bounds.size.x;
-            Debug.Log("Road width: " + roadWidth);
+            // Debug.Log("Road width: " + roadWidth);
             float roadVisibiityLimit =  envManager.GetRoadVisibility();
             if(transform.position.x < Camera.main.transform.position.x - roadVisibiityLimit* roadWidth)
             {
@@ -82,15 +82,16 @@ public class MultiplicateEnv : MonoBehaviour
     
     void RepositionRoad(float roadWidth)
     {
-        RemoveRigidbody();
-        // transform.position = initialPosition;
-        Vector3 newPosition = envManager.GetStreetSpawnPosition();
-        Debug.Log("New position from env Manager" + newPosition);
-        transform.position = newPosition;
-        transform.rotation = envManager.GetRoadRotation();
-        envManager.SetStreetSpawnPosition(roadWidth);
-        Vector3 testPosition = envManager.GetStreetSpawnPosition();
-        Debug.Log("Texting next position from env Manager" + testPosition);
+        Destroy(gameObject);
+        // RemoveRigidbody();
+        // // transform.position = initialPosition;
+        // Vector3 newPosition = envManager.GetStreetSpawnPosition();
+        // // Debug.Log("New position from env Manager" + newPosition);
+        // transform.position = newPosition;
+        // transform.rotation = envManager.GetRoadRotation();
+        // envManager.SetStreetSpawnPosition(roadWidth);
+        // Vector3 testPosition = envManager.GetStreetSpawnPosition();
+        // // Debug.Log("Texting next position from env Manager" + testPosition);
 
     }
 
