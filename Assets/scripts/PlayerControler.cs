@@ -101,14 +101,10 @@ public class PlayerController : MonoBehaviour
             gameOver = true;  // 标记游戏结束
             Debug.Log("Game Over: Player fell down");
             
-            // 停止计时
-            if (timer != null)
-            {
-                timer.StopTimer();  // 触发计时器停止逻辑
-            }
+            
 
             // 加载结束场景
-            SceneManager.LoadScene("Ending");  // 加载结束场景或显示游戏结束信息
+            SceneManager.LoadScene("Failing");  // 加载结束场景或显示游戏结束信息
         }
     }
 
