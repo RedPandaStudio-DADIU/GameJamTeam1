@@ -94,6 +94,18 @@ public class PlayerController : MonoBehaviour
             }
             playerRb.velocity = new Vector2(currentSpeed, playerRb.velocity.y);
         }
+
+
+        if (transform.position.y < -10 && !gameOver) // 这里 -10 是你可以设置的阈值
+        {
+            gameOver = true;  // 标记游戏结束
+            Debug.Log("Game Over: Player fell down");
+            
+            
+
+            // 加载结束场景
+            SceneManager.LoadScene("Failing");  // 加载结束场景或显示游戏结束信息
+        }
     }
 
     private void OnTriggerEnter(Collider other) {

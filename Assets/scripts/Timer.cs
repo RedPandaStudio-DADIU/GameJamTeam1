@@ -68,7 +68,7 @@ public class Timer : MonoBehaviour
 
     public void GameOver(){
 
-        StopTimer();
+        //StopTimer();
         Debug.Log("Time is over!!!!!!!!!!!!!");
         SceneManager.LoadScene("Failing");
     }
