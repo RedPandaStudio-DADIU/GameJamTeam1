@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
 
     public Vector3 startPosition;
 
+    private Timer timer;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -44,6 +46,7 @@ public class PlayerController : MonoBehaviour
 
        startPosition = new Vector3(400, 2, -6);
         transform.position = startPosition;
+        timer = FindObjectOfType<Timer>(); 
         //playerAudio = GetComponent<AudioSource>();
        // playerRb.AddForce(Vector3.up * 1000);
     }
@@ -96,7 +99,10 @@ public class PlayerController : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         if(other.gameObject.CompareTag("Finish")){
             gameOver = true;
-            Debug.Log("Game Over");
+            
+            timer.StopTimer(); // Stop and save the timer
+            
+            Debug.Log("Game Over(success)");
             SceneManager.LoadScene("Ending");
         }
     }
@@ -114,9 +120,10 @@ public class PlayerController : MonoBehaviour
             SceneManager.LoadScene("Failing");
         } else if (collision.gameObject.CompareTag("Finish")){
             gameOver = true;
-            Debug.Log("Game Over");
+            timer.StopTimer();
+            Debug.Log("Game Over?");
             Time.timeScale = 0;
-
+            SceneManager.LoadScene("Ending");
         }
     }
 
