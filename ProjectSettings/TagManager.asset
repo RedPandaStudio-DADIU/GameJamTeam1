@@ -10,6 +10,7 @@ TagManager:
   - Building
   - Crossroad
   - Gate
+  - Chasing
   layers:
   - Default
   - TransparentFX
@@ -21,8 +22,8 @@ TagManager:
   - Cars
   - Buildings
   - Crossroad
-  - 
-  - 
+  - Chasing
+  - NavMesh
   - 
   - 
   - 

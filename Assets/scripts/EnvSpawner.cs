@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.AI.Navigation;
+
 
 public class EnvSpawner : MonoBehaviour
 {
@@ -9,7 +11,7 @@ public class EnvSpawner : MonoBehaviour
     [SerializeField] GameObject streetPrefab;
     [SerializeField] GameObject crossStreetPrefab;
 
-    [SerializeField] int numberOfStreetsInitial = 15;
+    // [SerializeField] int numberOfStreetsInitial = 15;
     // [SerializeField] int numberOfCrossInitial = 2;
 
     [SerializeField] int numberOfBuildingsInitial = 12;
@@ -23,7 +25,7 @@ public class EnvSpawner : MonoBehaviour
     private Transform cyclistTransform;
     private bool startCollapse = false;
     [SerializeField] float roadVisibiityLimit;
-
+    [SerializeField] NavMeshManager navMeshManager; 
 
     void Start()
     {
@@ -108,6 +110,8 @@ public class EnvSpawner : MonoBehaviour
         } else {
             // Debug.Log("What the heck");
         }
+
+        // navMeshManager.UpdateNavMesh();
     }
    public void SpawnCrossroad(){
         Vector3 crossPosition = new Vector3(spawnPosition.x, 0f, -4.5f);
@@ -122,6 +126,8 @@ public class EnvSpawner : MonoBehaviour
             spawnPosition += new Vector3(crossWidth, 0, 0);
         }
         specialCarSpawningPoints.Add(cross);
+
+        // navMeshManager.UpdateNavMesh();
     }
 
 

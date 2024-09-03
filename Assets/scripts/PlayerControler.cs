@@ -105,7 +105,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision){
         if (collision.gameObject.CompareTag("Ground")){
-            Debug.Log("GROUND!!");
+            // Debug.Log("GROUND!!");
             isOnGround = true;
         }else if(collision.gameObject.CompareTag("Crossroad")) {
             Transform firstChild = collision.gameObject.transform.GetChild(0);  

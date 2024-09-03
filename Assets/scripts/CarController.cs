@@ -32,7 +32,7 @@ public class CarController : MonoBehaviour
     private bool isSpecialCarSpawned = false;
     private int startNormalCarSpawned = 0;
     private int startSpecialCarSpawned = 0;
-    private int numberOfCarsStart = 4;
+    private int numberOfCarsStart = 3;
 
 
     void Start()
@@ -57,6 +57,7 @@ public class CarController : MonoBehaviour
 
         isNormalCarSpawned = true;
         startDistance = 10f;
+        numberOfCarsStart = 3;
 
     }
 
@@ -136,10 +137,10 @@ public class CarController : MonoBehaviour
         {
             if (!IsCloseToFinish(30.0f)){
 
-                Debug.Log("Special Car going now!");
+                // Debug.Log("Special Car going now!");
 
                 if(envManager.specialCarSpawningPoints.Count > 0){
-                    Debug.Log("AAAAAAAAAAAAA");
+                    // Debug.Log("AAAAAAAAAAAAA");
                     // for(int i=0; i<envManager.specialCarSpawningPoints.Count; i++){
                     //     float xPosition = envManager.specialCarSpawningPoints[0].transform.position.x;
                     //     if(xPosition > cyclistTransform.position.x){
@@ -197,6 +198,16 @@ public class CarController : MonoBehaviour
             }
         }
         return false;
+    }
+
+
+    public int GetNumberOfNormalCars(){
+        return this.startNormalCarSpawned;
+
+    }
+
+    public int GetNumberOfSpecialCars(){
+        return this.startSpecialCarSpawned;
     }
 
 }
