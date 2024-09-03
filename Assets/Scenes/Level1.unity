@@ -583,8 +583,8 @@ MonoBehaviour:
   buildingPrefabs:
   - {fileID: 4791207939546982386, guid: 71c5c92f71898e54786b1cb016a73773, type: 3}
   - {fileID: 4141986607745389802, guid: 70197bca85f89e845b8bb9b8bdff8558, type: 3}
-  streetPrefab: {fileID: 7743955710392576570, guid: a0bfd5f8098a141428fb9ce8fce3fc6b, type: 3}
-  numberOfStreetsInitial: 3
+  streetPrefab: {fileID: 7743955710392576570, guid: 845d8266c7bf4584b97ce5f62292be8c, type: 3}
+  numberOfStreetsInitial: 15
   numberOfBuildingsInitial: 10
 --- !u!4 &558292027
 Transform:

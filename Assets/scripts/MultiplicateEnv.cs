@@ -6,21 +6,56 @@ public class MultiplicateEnv : MonoBehaviour
 {
     [SerializeField] EnvSpawner envManager;
     [SerializeField] float visibiityLimit;
+    private bool isCollapsing = false;
+    private Vector3 initialPosition;
+
+    private float roadWidth;
+
     // Start is called before the first frame update
     void Start()
     {
         envManager = FindObjectOfType<EnvSpawner>();
         visibiityLimit= 65f;
+        initialPosition = transform.position;
+        if (gameObject.tag == "Ground")
+        {
+            roadWidth = GetComponent<Collider>().bounds.size.x;
+        }
     }
 
     public void CheckVisibility(){
 
         if (gameObject.tag == "Ground")
         {
-            float roadWidth = GetComponent<Collider>().bounds.size.x;
-            if(transform.position.x < Camera.main.transform.position.x - 3* roadWidth)
+            // float roadWidth = GetComponent<Collider>().bounds.size.x;
+            Debug.Log("Road width: " + roadWidth);
+            float roadVisibiityLimit =  envManager.GetRoadVisibility();
+            if(transform.position.x < Camera.main.transform.position.x - roadVisibiityLimit* roadWidth)
             {
-                RepositionRoad(roadWidth);
+                if(!envManager.GetStartCollapse()){
+                    RepositionRoad(roadWidth);
+                } if(envManager.GetStartCollapse() && !isCollapsing){
+                    CollapseRoad();
+                    isCollapsing = true;
+                }
+
+                if(transform.position.y < -50f){
+                    isCollapsing = false;
+                    RepositionRoad(roadWidth);
+                }
+
+
+                // RepositionRoad(roadWidth);
+                // if(envManager.GetStartCollapse() && !isCollapsing){
+                //     CollapseRoad();
+                //     isCollapsing = true;
+                // }
+
+                // if(transform.position.x < -200f){
+                //     isCollapsing = false;
+                //     RepositionRoad(roadWidth);
+                // }
+
             }
         }
         else if (gameObject.tag == "Building")
@@ -40,11 +75,50 @@ public class MultiplicateEnv : MonoBehaviour
         CheckVisibility();
     }
 
+    void CollapseRoad(){
+        AddRigidbody();
+        StartCoroutine(DelayReposition(100f));
+    }
+    
     void RepositionRoad(float roadWidth)
     {
+        RemoveRigidbody();
+        // transform.position = initialPosition;
         Vector3 newPosition = envManager.GetStreetSpawnPosition();
+        Debug.Log("New position from env Manager" + newPosition);
         transform.position = newPosition;
+        transform.rotation = envManager.GetRoadRotation();
         envManager.SetStreetSpawnPosition(roadWidth);
+        Vector3 testPosition = envManager.GetStreetSpawnPosition();
+        Debug.Log("Texting next position from env Manager" + testPosition);
+
+    }
+
+    IEnumerator DelayReposition(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+    }
+
+    void AddRigidbody(){
+        Rigidbody rb = GetComponent<Rigidbody>();
+
+        if (rb == null)
+        {
+            rb = gameObject.AddComponent<Rigidbody>();
+        }
+
+        rb.mass = 2.0f;
+        rb.drag = 1.0f;
+        rb.angularDrag = 0.5f;
+        rb.useGravity = true;
+    }
+
+    void RemoveRigidbody(){
+        Rigidbody rb = GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            Destroy(rb);
+        }
     }
 
     void ReplaceBuilding()
