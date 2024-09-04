@@ -130,7 +130,7 @@ public class EnvManNew : MonoBehaviour
         Collider crossCollider = child.GetComponent<Collider>();
         if(crossCollider != null){
             float crossWidth = crossCollider.bounds.size.x;
-            spawnPosition += new Vector3(crossWidth, 0, 0);
+            spawnPosition += new Vector3(crossWidth-0.1f, 0, 0);
         }
         specialCarSpawningPoints.Add(cross);
     }
