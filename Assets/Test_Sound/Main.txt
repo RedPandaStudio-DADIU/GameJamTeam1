@@ -1,0 +1,49 @@
+Event	ID	Name			Wwise Object Path	Notes
+	284422048	Car_Drive			\Default Work Unit\Enemies\Car_Drive	
+	1281810935	Start			\Default Work Unit\Start	
+	1305133589	Player_Jump			\Default Work Unit\Player\Player_Jump	
+	1774002421	Atmosphere_P1			\Default Work Unit\Atmosphere\Atmosphere_P1	
+	1774002422	Atmosphere_P2			\Default Work Unit\Atmosphere\Atmosphere_P2	
+	1774002423	Atmosphere_P3			\Default Work Unit\Atmosphere\Atmosphere_P3	
+	2024222415	UI_Back			\Default Work Unit\UI\UI_Back	
+	2083252219	EndTimeHorror			\Default Work Unit\Atmosphere\EndTimeHorror	
+	2328010807	Truck_Drive			\Default Work Unit\Enemies\Truck_Drive	
+	2334556909	Cutscene_01			\Default Work Unit\Cutscenes\Cutscene_01	
+	2334556910	Cutscene_02			\Default Work Unit\Cutscenes\Cutscene_02	
+	2334556911	Cutscene_03			\Default Work Unit\Cutscenes\Cutscene_03	
+	2774129122	UI_Select			\Default Work Unit\UI\UI_Select	
+	3143914147	OutofRange			\Default Work Unit\OutofRange	
+	3238694046	Player_Accelerate			\Default Work Unit\Player\Player_Accelerate	
+	3298610829	Score_P1			\Default Work Unit\Score\Score_P1	
+	3298610830	Score_P2			\Default Work Unit\Score\Score_P2	
+	3298610831	Score_P3			\Default Work Unit\Score\Score_P3	
+	3328437640	HomelessGuy			\Default Work Unit\Enemies\HomelessGuy	
+	3446757962	Player_Crash			\Default Work Unit\Player\Player_Crash	
+	4104973115	Player_Start			\Default Work Unit\Player\Player_Start	
+	4227330338	Car_Honk			\Default Work Unit\Enemies\Car_Honk	
+	4290816800	Score_Layer1			\Default Work Unit\Score\Score_Layer1	
+	4290816802	Score_Layer3			\Default Work Unit\Score\Score_Layer3	
+	4290816803	Score_Layer2			\Default Work Unit\Score\Score_Layer2	
+
+Game Parameter	ID	Name			Wwise Object Path	Notes
+	1372896387	ScooterSpeed			\Default Work Unit\ScooterSpeed	
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	5229351	Atmosphere_RumbleLayer	Y:\Desktop\Wwise_GAME1\GAME_1\.cache\Windows\SFX\Atmosphere\Atmosphere_RumbleLayer_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Atmosphere\Atmosphere\Atmosphere_RumbleLayer		2957124
+	163955882	UI_Select	Y:\Desktop\Wwise_GAME1\GAME_1\.cache\Windows\SFX\UI\UI_Select_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\UI\UI_Select		36352
+	211879908	UI_Back	Y:\Desktop\Wwise_GAME1\GAME_1\.cache\Windows\SFX\UI\UI_Back_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\UI\UI_Back		192096
+	259634419	Scooter_Idle_loop	Y:\Desktop\Wwise_GAME1\GAME_1\.cache\Windows\SFX\Player_Scooter\Scooter_Idle_loop_FBC78EF0.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player_Scooter\Scooter_Idle_loop		214480
+	296060869	Truck_Loop	Y:\Desktop\Wwise_GAME1\GAME_1\.cache\Windows\SFX\Enemy_Truck\Truck_Loop_FBC78EF0.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemy_Truck\Truck_Loop		768096
+	357260239	Scooter_Start	Y:\Desktop\Wwise_GAME1\GAME_1\.cache\Windows\SFX\Player_Scooter\Scooter_Start_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player_Scooter\Scooter_Start		262992
+	450532434	Scooter_Drive_Normal	Y:\Desktop\Wwise_GAME1\GAME_1\.cache\Windows\SFX\Player_Scooter\Scooter_Drive_Normal_11A93380.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player_Scooter\Scooter_Drive_Normal		184826
+	477163199	Atmosphere_NearEndOfTime_Horror	Y:\Desktop\Wwise_GAME1\GAME_1\.cache\Windows\SFX\Atmosphere\Atmosphere_NearEndOfTime_Horror_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Atmosphere\Atmosphere\Atmosphere_NearEndOfTime_Horror		6664832
+	611710088	Scooter_Accelerate	Y:\Desktop\Wwise_GAME1\GAME_1\.cache\Windows\SFX\Player_Scooter\Scooter_Accelerate_EF5CE619.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player_Scooter\Scooter_Accelerate		194362
+	690332448	Atmosphere_Base	Y:\Desktop\Wwise_GAME1\GAME_1\.cache\Windows\SFX\Atmosphere\Atmosphere_Base_E7195330.wem		\Actor-Mixer Hierarchy\Default Work Unit\Atmosphere\Atmosphere\Atmosphere_Base		17803176
+	700509460	Scooter_Crash_Impact	Y:\Desktop\Wwise_GAME1\GAME_1\.cache\Windows\SFX\Player_Scooter\Scooter_Crash_Impact_2B39D3FB.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player_Scooter\Crash\Scooter_Crash_Impact		542268
+	704993860	Car_HornEnd	Y:\Desktop\Wwise_GAME1\GAME_1\.cache\Windows\SFX\Enemy_Car\Car_Horn_E257E13A.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemy_Car\Car_Horn\Car_HornEnd		14904
+	754011165	Scooter_Crash_Explosion	Y:\Desktop\Wwise_GAME1\GAME_1\.cache\Windows\SFX\Player_Scooter\Scooter_Crash_Explosion_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player_Scooter\Crash\Scooter_Crash_Explosion		1040980
+	857173838	Car_HornStart	Y:\Desktop\Wwise_GAME1\GAME_1\.cache\Windows\SFX\Enemy_Car\Car_Horn_8AC8800C.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemy_Car\Car_Horn\Car_HornStart		71144
+	871488133	Atmosphere_HorrorLayer1	Y:\Desktop\Wwise_GAME1\GAME_1\.cache\Windows\SFX\Atmosphere\Atmosphere_HorrorLayer1_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Atmosphere\Atmosphere\Atmosphere_HorrorLayer1		21747004
+	940045535	Car_loop	Y:\Desktop\Wwise_GAME1\GAME_1\.cache\Windows\SFX\Enemy_Car\Car_loop_FBC78EF0.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemy_Car\Car_loop		2883680
+	951798942	Scooter_Jump	Y:\Desktop\Wwise_GAME1\GAME_1\.cache\Windows\SFX\Player_Scooter\Scooter_Jump_0809D4AF.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player_Scooter\Scooter_Jump		1039532
+
