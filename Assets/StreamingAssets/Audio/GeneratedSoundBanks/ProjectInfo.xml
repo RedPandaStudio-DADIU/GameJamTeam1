@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ProjectInfo>
+	<Project Name="GAME_1" GUID="{802AF030-DBE8-42AF-AFA9-194EDCB82840}" Generator="2023.1.6.8555"/>
+	<CacheRoot>../../../../../../../Desktop/Wwise_GAME1/GAME_1/.cache</CacheRoot>
+	<Platforms>
+		<Platform Name="Mac" GUID="{E252DEC3-F700-4EAF-94C7-4330F3573C46}" BasePlatform="Mac" BasePlatformGUID="{9C6217D5-DD11-4795-87C1-6CE02853C540}" Path="../../../../../../../Desktop/Wwise_GAME1/GAME_1/GeneratedSoundBanks/Mac"/>
+		<Platform Name="Windows" GUID="{82835E98-ED6D-41F5-A14E-F0A48BE6A1EB}" BasePlatform="Windows" BasePlatformGUID="{6E0CB257-C6C8-4C5C-8366-2740DFC441EB}" Path="../../../../../../../Desktop/Wwise_GAME1/GAME_1/GeneratedSoundBanks/Windows"/>
+	</Platforms>
+	<Languages>
+		<Language Name="English(US)" Id="684519430" GUID="{1BB663BF-68ED-4580-890A-A666BDDE07A5}" Default="true" UseAsStandIn="true"/>
+	</Languages>
+	<FileHash>{C292AACA-0330-5EB8-2859-0275A280FC1A}</FileHash>
+</ProjectInfo>
