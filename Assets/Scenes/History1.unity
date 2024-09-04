@@ -246,7 +246,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   historyText: {fileID: 268996220}
-  backButton: {fileID: 1898540773}
 --- !u!114 &268996220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -476,10 +475,10 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1923697030}
   - {fileID: 268996222}
   - {fileID: 1257446189}
   - {fileID: 1898540772}
-  - {fileID: 1923697030}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
