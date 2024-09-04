@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
         currentSpeed = 0;
         Time.timeScale = 1;
 
-       startPosition = new Vector3(400, 2, -6);
+        startPosition = new Vector3(400, 2.0f, -17);
         transform.position = startPosition;
         timer = FindObjectOfType<Timer>(); 
         //playerAudio = GetComponent<AudioSource>();
@@ -127,8 +127,13 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision){
         if (collision.gameObject.CompareTag("Ground")){
+            // Debug.Log("GROUND!!");
             isOnGround = true;
+        }else if(collision.gameObject.CompareTag("Crossroad")) {
+            Transform firstChild = collision.gameObject.transform.GetChild(0);  
+            GameObject child = firstChild.gameObject;
 
+            Debug.Log("Crossroad!! Player: " + transform.position.y + " Crossroad: " + collision.gameObject.transform.position.y + " cross child: " + child.transform.position.y);
         } else if (collision.gameObject.CompareTag("Car") || collision.gameObject.CompareTag("SpecialCar")){
             Debug.Log("Collision!");
             canMove = false;
