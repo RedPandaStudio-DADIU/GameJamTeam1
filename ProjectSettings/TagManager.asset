@@ -8,6 +8,9 @@ TagManager:
   - Car
   - SpecialCar
   - Building
+  - Crossroad
+  - Gate
+  - Chasing
   layers:
   - Default
   - TransparentFX
@@ -18,9 +21,9 @@ TagManager:
   - Door
   - Cars
   - Buildings
-  - 
-  - 
-  - 
+  - Crossroad
+  - Chasing
+  - NavMesh
   - 
   - 
   - 

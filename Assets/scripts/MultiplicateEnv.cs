@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class MultiplicateEnv : MonoBehaviour
 {
-    [SerializeField] EnvSpawner envManager;
+    // [SerializeField] EnvSpawner envManager;
+    [SerializeField] EnvManNew envManager;
+
     [SerializeField] float visibiityLimit;
     private bool isCollapsing = false;
     private Vector3 initialPosition;
@@ -14,12 +16,14 @@ public class MultiplicateEnv : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        envManager = FindObjectOfType<EnvSpawner>();
+        envManager = FindObjectOfType<EnvManNew>();
         visibiityLimit= 65f;
         initialPosition = transform.position;
         if (gameObject.tag == "Ground")
         {
-            roadWidth = GetComponent<Collider>().bounds.size.x;
+            Transform firstChild = gameObject.transform.GetChild(0);  
+            GameObject child = firstChild.gameObject;
+            roadWidth = child.GetComponent<Collider>().bounds.size.x;
         }
     }
 
@@ -28,12 +32,12 @@ public class MultiplicateEnv : MonoBehaviour
         if (gameObject.tag == "Ground")
         {
             // float roadWidth = GetComponent<Collider>().bounds.size.x;
-            Debug.Log("Road width: " + roadWidth);
-            float roadVisibiityLimit =  envManager.GetRoadVisibility();
+            // Debug.Log("Road width: " + roadWidth);
+            float roadVisibiityLimit =  30f; //envManager.GetRoadVisibility();
             if(transform.position.x < Camera.main.transform.position.x - roadVisibiityLimit* roadWidth)
             {
                 if(!envManager.GetStartCollapse()){
-                    RepositionRoad(roadWidth);
+                    RepositionRoad();
                 } if(envManager.GetStartCollapse() && !isCollapsing){
                     CollapseRoad();
                     isCollapsing = true;
@@ -41,24 +45,24 @@ public class MultiplicateEnv : MonoBehaviour
 
                 if(transform.position.y < -50f){
                     isCollapsing = false;
-                    RepositionRoad(roadWidth);
+                    RepositionRoad();
                 }
 
 
-                // RepositionRoad(roadWidth);
-                // if(envManager.GetStartCollapse() && !isCollapsing){
-                //     CollapseRoad();
-                //     isCollapsing = true;
-                // }
+                RepositionRoad();
+                if(envManager.GetStartCollapse() && !isCollapsing){
+                    CollapseRoad();
+                    isCollapsing = true;
+                }
 
-                // if(transform.position.x < -200f){
-                //     isCollapsing = false;
-                //     RepositionRoad(roadWidth);
-                // }
+                if(transform.position.x < -200f){
+                    isCollapsing = false;
+                    RepositionRoad();
+                }
 
             }
         }
-        else if (gameObject.tag == "Building")
+        else if (gameObject.tag == "Building"||gameObject.tag == "Crossroad")
         {
             if(transform.position.x < Camera.main.transform.position.x - visibiityLimit)
             {
@@ -80,17 +84,18 @@ public class MultiplicateEnv : MonoBehaviour
         StartCoroutine(DelayReposition(100f));
     }
     
-    void RepositionRoad(float roadWidth)
+    void RepositionRoad()
     {
-        RemoveRigidbody();
-        // transform.position = initialPosition;
-        Vector3 newPosition = envManager.GetStreetSpawnPosition();
-        Debug.Log("New position from env Manager" + newPosition);
-        transform.position = newPosition;
-        transform.rotation = envManager.GetRoadRotation();
-        envManager.SetStreetSpawnPosition(roadWidth);
-        Vector3 testPosition = envManager.GetStreetSpawnPosition();
-        Debug.Log("Texting next position from env Manager" + testPosition);
+        Destroy(gameObject);
+        // RemoveRigidbody();
+        // // transform.position = initialPosition;
+        // Vector3 newPosition = envManager.GetStreetSpawnPosition();
+        // // Debug.Log("New position from env Manager" + newPosition);
+        // transform.position = newPosition;
+        // transform.rotation = envManager.GetRoadRotation();
+        // envManager.SetStreetSpawnPosition(roadWidth);
+        // Vector3 testPosition = envManager.GetStreetSpawnPosition();
+        // // Debug.Log("Texting next position from env Manager" + testPosition);
 
     }
 
@@ -124,7 +129,17 @@ public class MultiplicateEnv : MonoBehaviour
     void ReplaceBuilding()
     {
         // Debug.LogWarning("BuildingCreation");
+        if(envManager.specialCarSpawningPoints.Contains(gameObject)){
+            envManager.specialCarSpawningPoints.Remove(gameObject);
+        }
+
         Destroy(gameObject);
+        float prob = Random.Range(0f, 1f);
+        if(prob <= 0.1){
+            envManager.SpawnCrossroad();
+        } else{
+            envManager.SpawnBuilding();
+        }
         envManager.SpawnBuilding();
     }
 }
