@@ -6,16 +6,11 @@ using TMPro;
 using UnityEngine.SceneManagement;
 using System.Text;
 
-public class ShowHistory : MonoBehaviour
+public class Back1 : MonoBehaviour
 {
-   
-        
-    
     // Start is called before the first frame update
     void Start()
     {
-        
-        
         
     }
 
@@ -24,13 +19,10 @@ public class ShowHistory : MonoBehaviour
     {
         
     }
-
-
-     public void OnHistoryButtonClick()
+      public void OnBackButtonClick()
     {
-        SceneManager.LoadScene("History1"); 
+        Debug.Log("Back button clicked");
+        SceneManager.LoadScene("Starting"); 
     }
-
-    
 
 }
