@@ -16,7 +16,7 @@ public class CarController : MonoBehaviour
     [SerializeField] float maxReactionDistance = 25.0f;
     [SerializeField] float startDistance;
     [SerializeField] float collisionRadius = 10.0f;
-    [SerializeField] EnvSpawner envManager;
+    [SerializeField] EnvManNew envManager;
     [SerializeField] float positionY;
 
     private Transform cyclistTransform;
@@ -50,7 +50,7 @@ public class CarController : MonoBehaviour
             playerController = player.GetComponent<PlayerController>();
         }
 
-        envManager = FindObjectOfType<EnvSpawner>();
+        envManager = FindObjectOfType<EnvManNew>();
         minReactionDistance = 10.0f;
         maxReactionDistance = 25.0f;
         positionY = 4.5f;

@@ -35,7 +35,7 @@ public class HomelessGuyMovement : MonoBehaviour
                 canMove = true;
                 agent = gameObject.AddComponent<NavMeshAgent>();
                 agent.speed = 7f;
-                // agent.angularSpeed = 0.5f;
+                agent.angularSpeed = 0.5f;
                 // agent.autoBraking = false; 
                 agent.acceleration = 15f;
                 agent.baseOffset=1f;
