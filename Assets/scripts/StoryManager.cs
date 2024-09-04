@@ -7,65 +7,90 @@ using TMPro;
 
 public class StoryManager : MonoBehaviour
 {
-    public Image[] storyImages;         // 用于存储所有剧情图片的数组
+    public Image storyImage;         // 用于显示唯一的剧情图片
     public TextMeshProUGUI storyText;             // 用于显示剧情文本的 Text 组件
     public string[] storyTexts;         // 用于存储所有剧情文本的数组
-    public float displayDuration = 3f;  // 每张图片和文本显示的时间
+    public float displayDuration = 4f;  // 每张图片和文本显示的时间
     public string nextSceneName = "Level1"; // 剧情结束后要加载的场景名称
 
-    private int currentIndex = 0;       // 当前展示的图片和文本的索引
+    private int currentIndex = 0;       // 当前展示的文本的索引
     private float timer = 0f;
     private bool isStoryPlaying = false; // 用于控制是否开始播放剧情
 
     public GameObject canvasToHide;
+    public GameObject storycanvas;
 
     // Start is called before the first frame update
     void Start()
     {
-        foreach (Image img in storyImages)
+        // Hide the canvas initially
+        if (storycanvas != null)
         {
-            img.gameObject.SetActive(false);
+            storycanvas.SetActive(false);  
         }
+        
+        if (storyImage != null)
+        {
+            storyImage.gameObject.SetActive(false);  // Hide the image until the story starts
+        }
+
+        // Clear the text initially
         storyText.text = "";
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-
-
         if (isStoryPlaying)
         {
             timer += Time.deltaTime;
 
-            // 如果超过显示时间，则切换到下一个剧情元素
+            // Switch to the next text when the display duration is reached
             if (timer >= displayDuration)
             {
                 currentIndex++;
-                if (currentIndex < storyImages.Length)
+                if (currentIndex < storyTexts.Length)
                 {
                     ShowStoryElement();
                 }
                 else
                 {
-                    // 如果所有剧情播放完毕，切换到下一个场景
-                    SceneManager.LoadScene("Level1");
+                    // All texts have been displayed, move to the next scene
+                    SceneManager.LoadScene(nextSceneName);
                 }
 
-                timer = 0f;
+                timer = 0f; // Reset the timer for the next text
             }
         }
     }
 
-     public void StartStory()
+    public void StartStory()
     {
-        // 在按钮点击后开始播放剧情
+        // Start playing the story when the button is clicked
         isStoryPlaying = true;
+        storycanvas.SetActive(true);
         currentIndex = 0;
         timer = 0f;
+
+        // Show the story image only once
+        if (storyImage != null)
+        {
+            storyImage.gameObject.SetActive(true);
+
+            RectTransform imageRect = storyImage.GetComponent<RectTransform>();
+
+            // Set the image size as a fixed ratio of the screen size
+            imageRect.sizeDelta = new Vector2(Screen.width * 0.8f, Screen.height * 0.5f); // 80% of screen width, 50% of screen height
+            imageRect.anchoredPosition = new Vector2(0, 100); // Center the image with some padding from the top
+            imageRect.anchorMin = new Vector2(0.5f, 0.5f); // Anchor to the middle of the screen
+            imageRect.anchorMax = new Vector2(0.5f, 0.5f);
+            imageRect.pivot = new Vector2(0.5f, 0.5f); // Pivot at the center of the image
+      
+        }
+
         ShowStoryElement();
-          if (canvasToHide != null)
+
+        if (canvasToHide != null)
         {
             canvasToHide.SetActive(false);
         }
@@ -73,37 +98,25 @@ public class StoryManager : MonoBehaviour
 
     void ShowStoryElement()
     {
-        // 显示当前索引的图片和文本
-        for (int i = 0; i < storyImages.Length; i++)
-        {
-            storyImages[i].gameObject.SetActive(i == currentIndex);
-        }
-        RectTransform imageRect = storyImages[currentIndex].GetComponent<RectTransform>();
-        imageRect.anchorMin = new Vector2(0.5f, 0.5f); // 将锚点设置为屏幕中心
-        imageRect.anchorMax = new Vector2(0.5f, 0.5f);
-        imageRect.pivot = new Vector2(0.5f, 0.5f); // 将中心点设置为对象的中心
-        imageRect.anchoredPosition = Vector2.zero; // 图片居中
-        imageRect.sizeDelta = new Vector2(Screen.width * 0.8f, Screen.height * 0.6f); // 占据屏幕 80% 的宽度和 60% 的高度
-
-
-
+        
+        
+        
+        // Only update the text, the image remains the same
         storyText.text = storyTexts[currentIndex];
-        RectTransform textRect = storyText.GetComponent<RectTransform>();
-        textRect.anchorMin = new Vector2(0.5f, 0); // 锚点设置在屏幕底部中间
-        textRect.anchorMax = new Vector2(0.5f, 0);
-        textRect.pivot = new Vector2(0.5f, 0.5f); // 将中心点设置为对象的中心
-        textRect.anchoredPosition = new Vector2(0, 50); // 字幕稍微向上移动一点，以避免太靠近屏幕边缘
-        textRect.sizeDelta = new Vector2(Screen.width * 0.8f, Screen.height * 0.1f); // 设置字幕框的大小
-      
-       storyText.enableAutoSizing = true;
 
-        // 设置字体大小范围
+        // Adjust text properties for auto-sizing and alignment
+        RectTransform textRect = storyText.GetComponent<RectTransform>();
+        textRect.anchorMin = new Vector2(0.5f, 0.5f);
+        textRect.anchorMax = new Vector2(0.5f, 0.5f);
+        textRect.pivot = new Vector2(0.5f, 0.5f);
+        textRect.anchoredPosition = new Vector2(0, 100); // Position the text a bit lower on the screen
+        textRect.sizeDelta = new Vector2(Screen.width * 0.7f, Screen.height * 0.3f); // Adjust the size of the text box
+
+        storyText.enableAutoSizing = true;
         storyText.fontSizeMin = 12;
         storyText.fontSizeMax = 80;
+        storyText.alignment = TextAlignmentOptions.Center; // Center the text
 
-        
-storyText.alignment = TextAlignmentOptions.Center; // 这将使文本内容居中对齐
-    storyText.text = storyTexts[currentIndex];
-
+        // If needed, the picture remains on screen, no need to hide or show it again
     }
 }

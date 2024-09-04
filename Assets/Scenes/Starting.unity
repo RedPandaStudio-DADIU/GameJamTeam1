@@ -365,14 +365,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbe682f2933f91b4fbfba8b509488bbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  storyImages:
-  - {fileID: 1664260176}
+  storyImage: {fileID: 1664260176}
   storyText: {fileID: 1707267076}
   storyTexts:
-  - story begins ...
+  - You feel lonely
+  - You feel abandoned
+  - You feel like a stranger in a strange world.
+  - Don't worry, this is just Copenhagen
+  - 'Welcome to WOLT! '
+  - 'Welcome to WOLT! '
+  - Your first delivery is to Ryesgade 56.
+  - Your first delivery is to Ryesgade 56.
+  - 'Your delivery is expected in fifteen minutes. '
+  - "Kn\xE6k\_and\_Break"
   displayDuration: 3
   nextSceneName: Level1
   canvasToHide: {fileID: 108847298}
+  storycanvas: {fileID: 128100799}
 --- !u!1 &487015368
 GameObject:
   m_ObjectHideFlags: 0
@@ -653,7 +662,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 194c6b24e6599ea4097d1dcaf07d995f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LastSceneName: 
 --- !u!1 &838190683
 GameObject:
   m_ObjectHideFlags: 0
@@ -1563,7 +1571,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9559748, g: 0.9469561, b: 0.9469561, a: 0.13725491}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1626,7 +1634,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New story Text...
+  m_text: "You feel lonely. You feel abandoned. You feel like a stranger in a strange
+    world. Don't worry, this is just Copenhagen. Welcome to WOLT! Your first delivery
+    is to Ryesgade 56. Your delivery is expected in fifteen minutes. Kn\xE6k\_and\_Break.'"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b5a2963244b42024eb23a41a31d6782e, type: 2}
   m_sharedMaterial: {fileID: -4428605551955751149, guid: b5a2963244b42024eb23a41a31d6782e, type: 2}
@@ -1719,8 +1729,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 140, y: -567}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 140, y: 0}
+  m_SizeDelta: {x: 500, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1891095590
 GameObject:

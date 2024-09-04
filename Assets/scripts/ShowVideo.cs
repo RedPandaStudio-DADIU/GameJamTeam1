@@ -8,7 +8,7 @@ using TMPro;
 public class ShowVideo : MonoBehaviour
 {
     [SerializeField] private float pauseTime = 60.0f;  
-    [SerializeField] private float resumeDelay = 15.0f; 
+    [SerializeField] private float resumeDelay = 30.0f; 
     [SerializeField] private Canvas pauseCanvas;  
 
     public GameObject CameraObject;
