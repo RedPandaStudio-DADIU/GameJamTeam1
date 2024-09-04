@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/HistoryScore.unity
     guid: 37ecfa99f61eee64d8392861a864a2b4
+  - enabled: 1
+    path: Assets/Scenes/History1.unity
+    guid: fc660cab45d72f547aa11efc0c27e9ca
   m_configObjects: {}

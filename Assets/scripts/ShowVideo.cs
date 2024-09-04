@@ -4,10 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class GamePauseManager : MonoBehaviour
+
+public class ShowVideo : MonoBehaviour
 {
-    [SerializeField] private float pauseTime = 5.0f;  
-    [SerializeField] private float resumeDelay = 3.0f; 
+    [SerializeField] private float pauseTime = 60.0f;  
+    [SerializeField] private float resumeDelay = 15.0f; 
     [SerializeField] private Canvas pauseCanvas;  
 
     public GameObject CameraObject;
@@ -47,27 +48,22 @@ public class GamePauseManager : MonoBehaviour
         Time.timeScale = 0;  
         if (pauseCanvas != null)
         {
-            
+            pauseCanvas.transform.position = CameraObject.transform.position + CameraObject.transform.forward * 2.0f; // 2.0f 是距离摄像机的距离，你可以根据需要调整
+            pauseCanvas.transform.rotation = CameraObject.transform.rotation; // 使画布面向摄像机
 
-            if (CameraObject != null)
+            // 设置画布的大小
+            RectTransform canvasRect = pauseCanvas.GetComponent<RectTransform>();
+
+            if (canvasRect != null)
             {
-                
-                pauseCanvas.transform.position = CameraObject.transform.position + CameraObject.transform.forward * 2.0f; // 2.0f 是距离摄像机的距离，你可以根据需要调整
-                pauseCanvas.transform.rotation = CameraObject.transform.rotation; // 使画布面向摄像机
-
-                // 设置画布的大小
-                RectTransform canvasRect = pauseCanvas.GetComponent<RectTransform>();
-
-                if (canvasRect != null)
-                {
-                    // 调整画布的宽高比，使其合适
-                    canvasRect.sizeDelta = new Vector2(800, 600); // 你可以根据需要调整宽度和高度
-                }
-                
-                pauseCanvas.enabled = true;  
+                // 调整画布的宽高比，使其合适
+                canvasRect.sizeDelta = new Vector2(800, 600); // 你可以根据需要调整宽度和高度
             }
+            
+            pauseCanvas.enabled = true;  
         }
-        // wait for 3 s
+
+        // wait for 15 s
         yield return new WaitForSecondsRealtime(resumeDelay);
 
         // continue
