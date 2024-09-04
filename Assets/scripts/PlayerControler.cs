@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         if (canMove){
-            if (Input.GetKeyDown(KeyCode.Space) && isOnGround && !gameOver){
+            if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)) && isOnGround && !gameOver){
                 playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
                 isOnGround = false;
                 //playerAnim.SetTrigger("Jump_trig");
@@ -67,10 +67,14 @@ public class PlayerController : MonoBehaviour
             float verticalInput = Input.GetAxis("Vertical");
 
             //playerRb.velocity = new Vector2(horizontalInput * moveSpeed, playerRb.velocity.y);
+           
+            bool isShiftPressed = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
+        
+            
             if (horizontalInput > 0)
             {
                 // speed up
-                if (verticalInput > 0){
+                if (isShiftPressed  ){
                     currentSpeed = Mathf.MoveTowards(currentSpeed, 2*moveSpeed, 5*acceleration * Time.deltaTime);
                     speedUp = true;
                 }else{
