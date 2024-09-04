@@ -14,7 +14,7 @@ public class CarController : MonoBehaviour
     [SerializeField] float maxIntervalTimeSpecialCar = 6.0f;
     [SerializeField] float minReactionDistance = 10.0f;
     [SerializeField] float maxReactionDistance = 25.0f;
-    [SerializeField] float startDistance = 5.0f;
+    [SerializeField] float startDistance;
     [SerializeField] float collisionRadius = 10.0f;
     [SerializeField] EnvSpawner envManager;
     [SerializeField] float positionY;
@@ -32,7 +32,7 @@ public class CarController : MonoBehaviour
     private bool isSpecialCarSpawned = false;
     private int startNormalCarSpawned = 0;
     private int startSpecialCarSpawned = 0;
-    private int numberOfCarsStart = 4;
+    private int numberOfCarsStart = 3;
 
 
     void Start()
@@ -56,6 +56,8 @@ public class CarController : MonoBehaviour
         positionY = 4.5f;
 
         isNormalCarSpawned = true;
+        startDistance = 10f;
+        numberOfCarsStart = 3;
 
     }
 
@@ -72,7 +74,7 @@ public class CarController : MonoBehaviour
         }
 
         float randomDist = Random.Range(minReactionDistance, maxReactionDistance);
-        spawnPosition = new Vector3(cyclistTransform.position.x+randomDist, 1.8f, cyclistTransform.position.z+startDistance); 
+        spawnPosition = new Vector3(cyclistTransform.position.x+randomDist, 2.2f, cyclistTransform.position.z-startDistance); 
 
 
         if(IsTraffic(spawnPosition, Vector3.forward)){
@@ -130,16 +132,46 @@ public class CarController : MonoBehaviour
         }
     }
 
-     private void SpawnSpecialCar(){
-
+    private void SpawnSpecialCar(){
         if (!stopInstantiating && isSpecialCarSpawned)
         {
             if (!IsCloseToFinish(30.0f)){
-                spawnPosition.y = positionY;
+
+                // Debug.Log("Special Car going now!");
+
+                if(envManager.specialCarSpawningPoints.Count > 0){
+                    // Debug.Log("AAAAAAAAAAAAA");
+                    // for(int i=0; i<envManager.specialCarSpawningPoints.Count; i++){
+                    //     float xPosition = envManager.specialCarSpawningPoints[0].transform.position.x;
+                    //     if(xPosition > cyclistTransform.position.x){
+
+                    // envManager.specialCarSpawningPoints.gameObject.
+
+                        Transform firstChild = envManager.specialCarSpawningPoints[0].transform.GetChild(0);  
+                        GameObject child = firstChild.gameObject;
+                        
+                        Collider crossCollider = child.GetComponent<Collider>();
+                        if(crossCollider != null){
+                            float crossWidth = crossCollider.bounds.size.x;
+                            spawnPosition.x = envManager.specialCarSpawningPoints[0].transform.position.x + crossWidth/2;
+
+                        }
+
+
+                            // spawnPosition.x = envManager.specialCarSpawningPoints[0].transform.position.x;
+                        //     break;
+                        // }
+                    // }
+                }
+
+                spawnPosition.y = 4f; //positionY;
+                spawnPosition.z = cyclistTransform.position.z+startDistance;
                 GameObject instance = Instantiate(specialCar, spawnPosition, Quaternion.Euler(0, -90, 0));
                 if (startSpecialCarSpawned < numberOfCarsStart){
                     startSpecialCarSpawned++;
                 }
+            
+                
             }
         }
     }
@@ -166,6 +198,16 @@ public class CarController : MonoBehaviour
             }
         }
         return false;
+    }
+
+
+    public int GetNumberOfNormalCars(){
+        return this.startNormalCarSpawned;
+
+    }
+
+    public int GetNumberOfSpecialCars(){
+        return this.startSpecialCarSpawned;
     }
 
 }
