@@ -20,17 +20,33 @@ public class PlayerController : MonoBehaviour
     public bool isMoving = false;
 
     public Vector3 startPosition;
-
     private Timer timer;
     [SerializeField] Animator characterAnimator;
     [SerializeField] Animator bikeAnimator;
     // [SerializeField] Animator wheelBackAnimator;
 
-    
+
+    [SerializeField] AudioClip scooterDriveSpeed;
+    [SerializeField] AudioClip scooterCrashImpact;
+    [SerializeField] AudioClip scooterCrashExplosion;
+    [SerializeField] AudioClip scooterJump;
+    [SerializeField] AudioClip scooterDriveNormal;
+    [SerializeField] AudioClip scooterStart;
+    [SerializeField] AudioClip scooterIdleLoop;
+    [SerializeField] AudioClip scooterAccelerate;
+    [SerializeField] AudioSource source;
+
+    void Awake () {
+
+        source = GetComponent<AudioSource>();
+    }
+
+
     // Start is called before the first frame update
     void Start()
     {
         playerRb = GetComponent<Rigidbody>();
+        source.PlayOneShot(scooterStart,0.5f);
         //playerAnim = GetComponent<Animator>();
         Physics.gravity = new Vector3(0, -10, 0)* gravityModifier;
         playerRb.constraints = RigidbodyConstraints.FreezePositionZ;
@@ -72,6 +88,15 @@ public class PlayerController : MonoBehaviour
             if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)) && isOnGround && !gameOver){
                 playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
                 isOnGround = false;
+
+                if (source.isPlaying)
+                {
+                    source.Stop();
+                }
+                source.PlayOneShot(scooterJump,1.0f);
+
+                // source.PlayOneShot(scooterJump,1.0f);
+
                 //playerAnim.SetTrigger("Jump_trig");
                 //dirtParticle.Stop();
                 //playerAudio.PlayOneShot(jumpSound, 1.0f);
@@ -84,19 +109,32 @@ public class PlayerController : MonoBehaviour
            
             bool isShiftPressed = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
         
+            // while(currentSpeed == 0.0f){
+            //     source.PlayOneShot(scooterIdleLoop,0.2f);
+            // }
             
             if (horizontalInput > 0)
             {
+                source.PlayOneShot(scooterDriveNormal,0.1f);
+
                 // speed up
                 if (isShiftPressed  ){
                     currentSpeed = Mathf.MoveTowards(currentSpeed, 2*moveSpeed, 5*acceleration * Time.deltaTime);
                     speedUp = true;
+                    if (source.isPlaying && source.clip != scooterDriveSpeed)
+                    {
+                        source.Stop();
+                    }
+                    source.PlayOneShot(scooterDriveSpeed,1.0f);
+
                 }else{
                     if (speedUp){
                         currentSpeed = Mathf.MoveTowards(currentSpeed, 0, 20*deceleration * Time.deltaTime);
                         speedUp = false;
+
                     } else{
                         currentSpeed = Mathf.MoveTowards(currentSpeed, moveSpeed, acceleration * Time.deltaTime);
+
                     }
                 }
             }
@@ -104,11 +142,21 @@ public class PlayerController : MonoBehaviour
             {
                 // slow down
                 currentSpeed = Mathf.MoveTowards(currentSpeed, 0, deceleration * Time.deltaTime);
+
             }
             else
             {
                 // gradully stop
                 currentSpeed = Mathf.MoveTowards(currentSpeed, 0, deceleration * Time.deltaTime);
+
+            }
+
+            if(currentSpeed == 0.0){
+                if (source.isPlaying)
+                {
+                    source.Stop();
+                }
+                source.PlayOneShot(scooterIdleLoop,0.8f);
             }
             playerRb.velocity = new Vector2(currentSpeed, playerRb.velocity.y);
         }
@@ -143,6 +191,10 @@ public class PlayerController : MonoBehaviour
         // Debug.Log("Collision!!!"+collision.gameObject.name);
         if (collision.gameObject.CompareTag("Ground")){
             // Debug.Log("GROUND!!");
+            if (source.isPlaying && source.clip == scooterJump)
+            {
+                source.Stop();
+            }
             isOnGround = true;
         }else if(collision.gameObject.CompareTag("Crossroad")) {
             Transform firstChild = collision.gameObject.transform.GetChild(0);  
@@ -153,7 +205,16 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Collision!");
             canMove = false;
             Time.timeScale = 0;
-            SceneManager.LoadScene("Failing");
+            if (source.isPlaying )
+            {
+                source.Stop();
+            }
+            source.PlayOneShot(scooterCrashImpact,1.0f);
+
+            StartCoroutine(WaitAndLoadScene(2.0f, "Failing"));
+
+            // StartCoroutine(CrashSoundScene(scooterCrashImpact));
+            //SceneManager.LoadScene("Failing");
         } else if (collision.gameObject.CompareTag("Finish")){
             gameOver = true;
             timer.StopTimer();
@@ -162,6 +223,15 @@ public class PlayerController : MonoBehaviour
             SceneManager.LoadScene("Ending");
         }
     }
+
+    private IEnumerator WaitAndLoadScene(float waitTime, string sceneName)
+{
+    // 等待指定的时间
+    yield return new WaitForSecondsRealtime(waitTime);
+
+    // 加载场景
+    SceneManager.LoadScene(sceneName);
+}
 
     public bool getCanMove(){
         return this.canMove;
