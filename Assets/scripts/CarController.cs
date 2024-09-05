@@ -124,7 +124,9 @@ public class CarController : MonoBehaviour
             nextRoadSpawnPos.x = nextRoadSpawnPos.x - 20.0f;
             nextRoadSpawnPos.y = positionY;
             nextRoadSpawnPos.z = cyclistTransform.position.z;
-            GameObject instance = Instantiate(car,  nextRoadSpawnPos, Quaternion.identity);
+            // GameObject instance = Instantiate(car,  nextRoadSpawnPos, Quaternion.identity);
+            GameObject instance = Instantiate(car,  nextRoadSpawnPos, car.transform.rotation);
+
 
             if (startNormalCarSpawned < numberOfCarsStart){
                 startNormalCarSpawned++;
