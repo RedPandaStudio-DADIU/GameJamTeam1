@@ -166,4 +166,8 @@ public class PlayerController : MonoBehaviour
     public bool getCanMove(){
         return this.canMove;
     }
+
+    public bool GetIsMoving(){
+        return this.isMoving;
+    }
 }

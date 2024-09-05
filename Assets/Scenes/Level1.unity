@@ -437,6 +437,71 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &248458434
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1267519117180400955, guid: be8ebd1818853ad479118f162c4fb456, type: 3}
+      propertyPath: carController
+      value: 
+      objectReference: {fileID: 600080557}
+    - target: {fileID: 1267519117180400955, guid: be8ebd1818853ad479118f162c4fb456, type: 3}
+      propertyPath: navMeshManager
+      value: 
+      objectReference: {fileID: 677041216}
+    - target: {fileID: 3890536391524739018, guid: be8ebd1818853ad479118f162c4fb456, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1983.8597
+      objectReference: {fileID: 0}
+    - target: {fileID: 3890536391524739018, guid: be8ebd1818853ad479118f162c4fb456, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 164
+      objectReference: {fileID: 0}
+    - target: {fileID: 3890536391524739018, guid: be8ebd1818853ad479118f162c4fb456, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 427.13754
+      objectReference: {fileID: 0}
+    - target: {fileID: 3890536391524739018, guid: be8ebd1818853ad479118f162c4fb456, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 3890536391524739018, guid: be8ebd1818853ad479118f162c4fb456, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3890536391524739018, guid: be8ebd1818853ad479118f162c4fb456, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 3890536391524739018, guid: be8ebd1818853ad479118f162c4fb456, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3890536391524739018, guid: be8ebd1818853ad479118f162c4fb456, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3890536391524739018, guid: be8ebd1818853ad479118f162c4fb456, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 3890536391524739018, guid: be8ebd1818853ad479118f162c4fb456, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4518841678852767088, guid: be8ebd1818853ad479118f162c4fb456, type: 3}
+      propertyPath: m_Name
+      value: HomelessGuy
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: be8ebd1818853ad479118f162c4fb456, type: 3}
 --- !u!1 &305904584
 GameObject:
   m_ObjectHideFlags: 0
@@ -6005,6 +6070,32 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &988409933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 988409930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8438bd75c4904bc44b29ac65b47a982d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &988409934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 988409930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f3eba4dcfbff0c469ed02b4e86dd7f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerController: {fileID: 1801480099}
+  character: {fileID: 1715721045}
 --- !u!1 &1011029434
 GameObject:
   m_ObjectHideFlags: 0
@@ -6762,15 +6853,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7814308413555801581, guid: 3ec545a039e7ee246a8402c031fffd9e, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.07
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 7814308413555801581, guid: 3ec545a039e7ee246a8402c031fffd9e, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.07
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 7814308413555801581, guid: 3ec545a039e7ee246a8402c031fffd9e, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.07
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 7814308413555801581, guid: 3ec545a039e7ee246a8402c031fffd9e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6844,6 +6935,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2213434643287593177, guid: 3ec545a039e7ee246a8402c031fffd9e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 988409932}
+    - targetCorrespondingSourceObject: {fileID: 2213434643287593177, guid: 3ec545a039e7ee246a8402c031fffd9e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 988409933}
+    - targetCorrespondingSourceObject: {fileID: 2213434643287593177, guid: 3ec545a039e7ee246a8402c031fffd9e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 988409934}
     - targetCorrespondingSourceObject: {fileID: 9120552891924589125, guid: 3ec545a039e7ee246a8402c031fffd9e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1715721047}
@@ -6961,6 +7058,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4848300612823231808, guid: 3ec545a039e7ee246a8402c031fffd9e, type: 3}
   m_PrefabInstance: {fileID: 1795899738}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1801480099 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7828410249205738980, guid: 3ec545a039e7ee246a8402c031fffd9e, type: 3}
+  m_PrefabInstance: {fileID: 1795899738}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1801480095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65ef54c20a50b3447bd18c809ebc737a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1984341011
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7245,7 +7353,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3864413010436203765, guid: 068ef055184001b4bb697f70d4ce9431, type: 3}
       propertyPath: m_Name
-      value: HomelessGuy
+      value: HomelessGuyPlaceholder
+      objectReference: {fileID: 0}
+    - target: {fileID: 3864413010436203765, guid: 068ef055184001b4bb697f70d4ce9431, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8598035478504695777, guid: 068ef055184001b4bb697f70d4ce9431, type: 3}
       propertyPath: navMeshManager
@@ -7280,3 +7392,4 @@ SceneRoots:
   - {fileID: 1011029436}
   - {fileID: 186735234}
   - {fileID: 1795899738}
+  - {fileID: 248458434}
