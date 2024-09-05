@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour
         playerRb.constraints |= RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
         canMove = true;
 
-        jumpForce=30;
+        jumpForce=33;
         moveSpeed=15;
         gravityModifier=3;
         acceleration = 10f;
@@ -94,6 +94,8 @@ public class PlayerController : MonoBehaviour
                     source.Stop();
                 }
                 source.PlayOneShot(scooterJump,1.0f);
+                characterAnimator.SetBool("isJumping", true);
+                bikeAnimator.SetBool("isJumping", true);
 
                 // source.PlayOneShot(scooterJump,1.0f);
 
@@ -191,6 +193,8 @@ public class PlayerController : MonoBehaviour
         // Debug.Log("Collision!!!"+collision.gameObject.name);
         if (collision.gameObject.CompareTag("Ground")){
             // Debug.Log("GROUND!!");
+            characterAnimator.SetBool("isJumping", false);
+            bikeAnimator.SetBool("isJumping", false);
             if (source.isPlaying && source.clip == scooterJump)
             {
                 source.Stop();
@@ -221,6 +225,10 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Game Over?");
             Time.timeScale = 0;
             SceneManager.LoadScene("Ending");
+        }  else if (collision.gameObject.CompareTag("Chasing")){
+            Debug.Log("Homeless guy caught you!");
+            source.PlayOneShot(scooterCrashExplosion,1.0f);
+            StartCoroutine(WaitAndLoadScene(2.0f, "Failing")); 
         }
     }
 

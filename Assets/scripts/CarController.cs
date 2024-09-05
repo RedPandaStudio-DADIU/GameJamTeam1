@@ -168,7 +168,9 @@ public class CarController : MonoBehaviour
 
                 spawnPosition.y = 4f; //positionY;
                 spawnPosition.z = cyclistTransform.position.z+startDistance;
-                GameObject instance = Instantiate(specialCar, spawnPosition, Quaternion.Euler(0, -90, 0));
+                // GameObject instance = Instantiate(specialCar, spawnPosition, Quaternion.Euler(0, -90, 0));
+                GameObject instance = Instantiate(specialCar,  spawnPosition, specialCar.transform.rotation);
+
                 if (startSpecialCarSpawned < numberOfCarsStart){
                     startSpecialCarSpawned++;
                 }

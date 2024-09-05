@@ -241,6 +241,9 @@ MonoBehaviour:
   resumeDelay: 3
   pauseCanvas: {fileID: 14482465}
   CameraObject: {fileID: 380245526}
+  objectToSpawn: {fileID: 0}
+  playerTransform: {fileID: 0}
+  offsetDistance: 30
 --- !u!1 &85813195
 GameObject:
   m_ObjectHideFlags: 0
@@ -960,7 +963,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   car: {fileID: 5548034354108862245, guid: 85208149b0daa0e4bb36eea8eddb9715, type: 3}
-  specialCar: {fileID: 4138517180398399840, guid: e7ceb08c43ad1074c8ab14cd039d933b, type: 3}
+  specialCar: {fileID: 1980727745499529206, guid: 5741856fc6eed9b4fbe1d57ce0cd9b62, type: 3}
   startDelay: 1.78
   minIntervalTime: 4
   maxIntervalTime: 12

@@ -9,12 +9,15 @@ public class SpecialCarMovement : MonoBehaviour
     [SerializeField] float speed = 0.0f;    
     // [SerializeField] float movementZLimit = -50.0f;    
     private bool canMove = false;
+    [SerializeField] Animator specialCarAnimator;
+
 
 
     void Start()
     {
         isMoving = true;
         speed = -5.5f;
+        specialCarAnimator.SetBool("isMoving", isMoving);
         canMove = true;
 
     }
