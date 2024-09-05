@@ -17,8 +17,14 @@ public class PlayerController : MonoBehaviour
     public float deceleration = 20f; 
     private bool canMove = false;
     private bool speedUp = false;
+    public bool isMoving = false;
+
     public Vector3 startPosition;
     private Timer timer;
+    [SerializeField] Animator characterAnimator;
+    [SerializeField] Animator bikeAnimator;
+    // [SerializeField] Animator wheelBackAnimator;
+
 
     [SerializeField] AudioClip scooterDriveSpeed;
     [SerializeField] AudioClip scooterCrashImpact;
@@ -68,6 +74,16 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (currentSpeed > 0){
+            isMoving = true;
+            
+        } else{
+            isMoving=false;
+        }
+        characterAnimator.SetBool("isMoving", isMoving);
+        bikeAnimator.SetBool("isMoving", isMoving);
+//scale - 0.03
+
         if (canMove){
             if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)) && isOnGround && !gameOver){
                 playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
@@ -207,5 +223,9 @@ public class PlayerController : MonoBehaviour
 
     public bool getCanMove(){
         return this.canMove;
+    }
+
+    public bool GetIsMoving(){
+        return this.isMoving;
     }
 }

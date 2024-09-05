@@ -7,11 +7,13 @@ public class CarMovement : MonoBehaviour
     [SerializeField] bool isMoving = false;
     [SerializeField] float speed = 0;    
     private bool canMove = false;
+    [SerializeField] Animator carAnimator;
 
     // Start is called before the first frame update
     void Start()
     {
         isMoving = true;
+        carAnimator.SetBool("isMoving", isMoving);
         speed = -5.5f;
         canMove = true;
     }
@@ -22,6 +24,10 @@ public class CarMovement : MonoBehaviour
         if (isMoving && canMove){
             // # Move the Car
             transform.position=new Vector3(transform.position.x+speed*Time.deltaTime, transform.position.y, transform.position.z);
+            // transform.localScale = new Vector3(
+            //     400f,400f, 400f
+            // );
+
         }
     }
 
