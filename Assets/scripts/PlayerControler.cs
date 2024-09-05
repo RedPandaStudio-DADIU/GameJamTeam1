@@ -94,6 +94,8 @@ public class PlayerController : MonoBehaviour
                     source.Stop();
                 }
                 source.PlayOneShot(scooterJump,1.0f);
+                characterAnimator.SetBool("isJumping", true);
+                bikeAnimator.SetBool("isJumping", true);
 
                 // source.PlayOneShot(scooterJump,1.0f);
 
@@ -191,6 +193,8 @@ public class PlayerController : MonoBehaviour
         // Debug.Log("Collision!!!"+collision.gameObject.name);
         if (collision.gameObject.CompareTag("Ground")){
             // Debug.Log("GROUND!!");
+            characterAnimator.SetBool("isJumping", false);
+            bikeAnimator.SetBool("isJumping", false);
             if (source.isPlaying && source.clip == scooterJump)
             {
                 source.Stop();
