@@ -68,7 +68,7 @@ public class UICanvas : MonoBehaviour
             textRect.anchorMin = new Vector2(0.5f, 0.5f); // 将锚点设置为屏幕中心
             textRect.anchorMax = new Vector2(0.5f, 0.5f);
             textRect.pivot = new Vector2(0.5f, 0.5f); // 将轴心设置在对象的中心
-            textRect.anchoredPosition = new Vector2(0, Screen.height * 0.2f); // 位置调整到中上方
+            textRect.anchoredPosition = new Vector2(0, Screen.height * 0.25f); // 位置调整到中上方
             textRect.sizeDelta = new Vector2(referenceResolution.x * 0.8f * screenWidthRatio, referenceResolution.y * 0.2f * screenHeightRatio); // 扩大文本区域
  }
 
@@ -98,8 +98,8 @@ public class UICanvas : MonoBehaviour
         // 动态调整图片的位置和大小（如果存在）
         if (imageElement != null)
         {
-            imageElement.anchoredPosition = new Vector2(referenceResolution.x * -0.2f * screenWidthRatio, referenceResolution.y * 0.1f * screenHeightRatio);
-              imageElement.sizeDelta = new Vector2(referenceResolution.x * 0.2f * screenWidthRatio, referenceResolution.y * 0.2f * screenHeightRatio);
+            imageElement.anchoredPosition = new Vector2(0.5f, 0.5f);
+              imageElement.sizeDelta = new Vector2(referenceResolution.x * 1f * screenWidthRatio, referenceResolution.y * 1f * screenHeightRatio);
        }
 
         //AdjustUIForAspectRatio(screenWidthRatio, screenHeightRatio);
