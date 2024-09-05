@@ -8,7 +8,7 @@ using UnityEngine.Video;
 public class ShowVideo : MonoBehaviour
 {
     [SerializeField] private float pauseTime = 60.0f;  
-    [SerializeField] private float resumeDelay = 30.0f; 
+    [SerializeField] private float resumeDelay = 33.0f; 
     [SerializeField] private Canvas pauseCanvas;  
     [SerializeField] private VideoPlayer videoPlayer;  // Add a reference to the VideoPlayer
 
