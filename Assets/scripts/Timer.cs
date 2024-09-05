@@ -28,8 +28,10 @@ public class Timer : MonoBehaviour
     // Method to play audio clips
     private void PlayAudio(AudioClip clip)
     {
+        Debug.Log("Playing audio: ？");
         if (audioSource != null && clip != null)
         {
+            Debug.Log("Playing audio: " + clip.name);
             audioSource.PlayOneShot(clip);
         }
     }
@@ -41,6 +43,9 @@ public class Timer : MonoBehaviour
         timeRemaining = timeLimit;
         elapsedTime = 0f;
         isRunning = true;
+        playedAudio30To90 = false;
+        playedAudioLast15 = false;
+        playedAudioLast10 = false;
         
     }
 
@@ -56,36 +61,47 @@ public class Timer : MonoBehaviour
         timeRemaining = Mathf.Max(timeRemaining, 0);
 
          // Play the audio for 30-90 seconds range
-            if (timeRemaining <= 90.0f && timeRemaining >= 30.0f && !playedAudio30To90)
+
+        if (timeRemaining <= 100.0f && timeRemaining >= 60.0f && !playedAudio30To90)
             {
                 PlayAudio(audioClip30To90Seconds);
                 playedAudio30To90 = true;  // Ensure the clip is only played once
             }
 
             // Play the audio for the last 15 seconds
-            if (timeRemaining <= 15.0f && !playedAudioLast15)
+            if (timeRemaining <= 30.0f && !playedAudioLast15)
             {
                 PlayAudio(audioClipLast15Seconds);
                 playedAudioLast15 = true;  // Ensure the clip is only played once
             }
 
             // Play the audio for the last 10 seconds
-            if (timeRemaining <= 10.0f && !playedAudioLast10)
+            if (timeRemaining <= 15.0f && !playedAudioLast10)
             {
                 PlayAudio(audioClipLast10Seconds);
                 playedAudioLast10 = true;  // Ensure the clip is only played once
             }
 
+
         if (timeRemaining <= 15.0f){
             UpdateTime(timeRemaining, Color.red);
+           // PlayAudio(audioClipLast10Seconds);
+            //playedAudioLast10 = true;
 
         } else if(timeRemaining <= Mathf.FloorToInt(timeLimit/2)){
             UpdateTime(timeRemaining, Color.yellow);
-
+            //PlayAudio(audioClipLast15Seconds);
+            //playedAudioLast15 = true;
+        } else if(timeRemaining <= 90.0f){
+            UpdateTime(timeRemaining, Color.green);
+            //PlayAudio(audioClip30To90Seconds);
+            //playedAudio30To90 = true;
         } else{
             UpdateTime(timeRemaining, Color.green);
-
+            
         }
+
+
         if (timeRemaining == 0.0){
             GameOver();
         }
