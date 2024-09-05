@@ -80,7 +80,7 @@ public class StoryManager : MonoBehaviour
             RectTransform imageRect = storyImage.GetComponent<RectTransform>();
 
             // Set the image size as a fixed ratio of the screen size
-            imageRect.sizeDelta = new Vector2(Screen.width * 0.8f, Screen.height * 0.5f); // 80% of screen width, 50% of screen height
+            imageRect.sizeDelta = new Vector2(Screen.width * 1f, Screen.height * 1.5f); // 80% of screen width, 50% of screen height
             imageRect.anchoredPosition = new Vector2(0, 100); // Center the image with some padding from the top
             imageRect.anchorMin = new Vector2(0.5f, 0.5f); // Anchor to the middle of the screen
             imageRect.anchorMax = new Vector2(0.5f, 0.5f);
@@ -110,7 +110,7 @@ public class StoryManager : MonoBehaviour
         textRect.anchorMax = new Vector2(0.5f, 0.5f);
         textRect.pivot = new Vector2(0.5f, 0.5f);
         textRect.anchoredPosition = new Vector2(0, 100); // Position the text a bit lower on the screen
-        textRect.sizeDelta = new Vector2(Screen.width * 0.7f, Screen.height * 0.3f); // Adjust the size of the text box
+        textRect.sizeDelta = new Vector2(Screen.width * 0.8f, Screen.height * 0.5f); // Adjust the size of the text box
 
         storyText.enableAutoSizing = true;
         storyText.fontSizeMin = 12;

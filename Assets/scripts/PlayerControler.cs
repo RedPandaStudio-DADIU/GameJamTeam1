@@ -210,8 +210,11 @@ public class PlayerController : MonoBehaviour
                 source.Stop();
             }
             source.PlayOneShot(scooterCrashImpact,1.0f);
+
+            StartCoroutine(WaitAndLoadScene(2.0f, "Failing"));
+
             // StartCoroutine(CrashSoundScene(scooterCrashImpact));
-            // SceneManager.LoadScene("Failing");
+            //SceneManager.LoadScene("Failing");
         } else if (collision.gameObject.CompareTag("Finish")){
             gameOver = true;
             timer.StopTimer();
@@ -220,6 +223,15 @@ public class PlayerController : MonoBehaviour
             SceneManager.LoadScene("Ending");
         }
     }
+
+    private IEnumerator WaitAndLoadScene(float waitTime, string sceneName)
+{
+    // 等待指定的时间
+    yield return new WaitForSecondsRealtime(waitTime);
+
+    // 加载场景
+    SceneManager.LoadScene(sceneName);
+}
 
     public bool getCanMove(){
         return this.canMove;
