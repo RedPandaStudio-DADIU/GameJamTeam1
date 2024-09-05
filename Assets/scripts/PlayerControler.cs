@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour
         playerRb.constraints |= RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
         canMove = true;
 
-        jumpForce=30;
+        jumpForce=33;
         moveSpeed=15;
         gravityModifier=3;
         acceleration = 10f;
@@ -225,6 +225,10 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Game Over?");
             Time.timeScale = 0;
             SceneManager.LoadScene("Ending");
+        }  else if (collision.gameObject.CompareTag("Chasing")){
+            Debug.Log("Homeless guy caught you!");
+            source.PlayOneShot(scooterCrashExplosion,1.0f);
+            StartCoroutine(WaitAndLoadScene(2.0f, "Failing")); 
         }
     }
 

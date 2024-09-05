@@ -13,7 +13,7 @@ public class GamePauseManager : MonoBehaviour
     public GameObject CameraObject;
     public GameObject objectToSpawn;  // 生成的物体
     public Transform playerTransform; // 获取玩家位置
-    public float offsetDistance = 30f;  // 相机和物体移动的距离
+    public float offsetDistance = 25f;  // 相机和物体移动的距离
 
     private bool gamePaused = false;
     private float timer = 0.0f;
@@ -38,14 +38,14 @@ public class GamePauseManager : MonoBehaviour
             timer += Time.deltaTime;
 
             
-            if (timer >= pauseTime && !gamePaused)
-            {
-                StartCoroutine(PauseAndResumeGame());
-            }
+            // if (timer >= pauseTime && !gamePaused)
+            // {
+            //     StartCoroutine(PauseAndResumeGame());
+            // }
         }
     }
 
-    private IEnumerator PauseAndResumeGame()
+    public IEnumerator PauseAndResumeGame()
     {
         // stop
         gamePaused = true;
@@ -81,11 +81,11 @@ public class GamePauseManager : MonoBehaviour
         float cameraMoveDuration = 1.5f;  // 摄像机移动的时间
         yield return MoveCameraToPosition(targetPosition, cameraMoveDuration);
 
-        if (objectToSpawn != null )
-        {
-            Vector3 spawnPosition = playerTransform.position + new Vector3(-offsetDistance, 0, 0);  // 玩家身后 30 个单位
-            spawnedObject = Instantiate(objectToSpawn, spawnPosition, Quaternion.identity);
-       }
+    //     if (objectToSpawn != null )
+    //     {
+    //         Vector3 spawnPosition = playerTransform.position + new Vector3(-offsetDistance, 0, 0);  // 玩家身后 30 个单位
+    //         spawnedObject = Instantiate(objectToSpawn, spawnPosition, Quaternion.identity);
+    //    }
         
         // wait for 3 s
        targetPosition = originalCameraPosition ;
