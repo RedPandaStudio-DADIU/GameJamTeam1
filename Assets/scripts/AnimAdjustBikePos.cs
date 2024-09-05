@@ -20,7 +20,7 @@ public class AnimAdjustBikePos : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        transform.position = character.transform.position;
+        // transform.position = character.transform.position;
         transform.localScale = character.transform.localScale;  
 
     }

@@ -862,7 +862,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 594161d8505448d418f0936d930d7552, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  car: {fileID: 2366875425334261069, guid: 922eaaa9f1cd29840b81468c73cad6d2, type: 3}
+  car: {fileID: 2802069386395749477, guid: cbe89000e0401d943838eabd04bd9ec4, type: 3}
   specialCar: {fileID: 4138517180398399840, guid: e7ceb08c43ad1074c8ab14cd039d933b, type: 3}
   startDelay: 1.78
   minIntervalTime: 4
@@ -6062,7 +6062,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 105b1cb31c935834a832f581dcb1e258, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -6070,18 +6070,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &988409933
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 988409930}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8438bd75c4904bc44b29ac65b47a982d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &988409934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6935,9 +6923,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2213434643287593177, guid: 3ec545a039e7ee246a8402c031fffd9e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 988409932}
-    - targetCorrespondingSourceObject: {fileID: 2213434643287593177, guid: 3ec545a039e7ee246a8402c031fffd9e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 988409933}
     - targetCorrespondingSourceObject: {fileID: 2213434643287593177, guid: 3ec545a039e7ee246a8402c031fffd9e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 988409934}
