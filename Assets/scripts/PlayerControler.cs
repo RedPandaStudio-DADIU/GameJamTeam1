@@ -126,6 +126,7 @@ public class PlayerController : MonoBehaviour
    
 
     private void OnCollisionEnter(Collision collision){
+        // Debug.Log("Collision!!!"+collision.gameObject.name);
         if (collision.gameObject.CompareTag("Ground")){
             // Debug.Log("GROUND!!");
             isOnGround = true;

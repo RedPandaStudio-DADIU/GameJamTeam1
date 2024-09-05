@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-
+using UnityEngine.Video; 
 
 public class ShowVideo : MonoBehaviour
 {
     [SerializeField] private float pauseTime = 60.0f;  
-    [SerializeField] private float resumeDelay = 15.0f; 
+    [SerializeField] private float resumeDelay = 30.0f; 
     [SerializeField] private Canvas pauseCanvas;  
+    [SerializeField] private VideoPlayer videoPlayer;  // Add a reference to the VideoPlayer
 
     public GameObject CameraObject;
 
@@ -23,6 +24,12 @@ public class ShowVideo : MonoBehaviour
         {
             pauseCanvas.enabled = false;
         }
+
+        if (videoPlayer != null)
+        {
+            videoPlayer.Stop();
+        }
+
         Debug.Log("Time.timeScale before resume: " + Time.timeScale);
     }
 
@@ -46,21 +53,28 @@ public class ShowVideo : MonoBehaviour
         // stop
         gamePaused = true;
         Time.timeScale = 0;  
+
         if (pauseCanvas != null)
         {
             pauseCanvas.transform.position = CameraObject.transform.position + CameraObject.transform.forward * 2.0f; // 2.0f 是距离摄像机的距离，你可以根据需要调整
-            pauseCanvas.transform.rotation = CameraObject.transform.rotation; // 使画布面向摄像机
+            pauseCanvas.transform.rotation = CameraObject.transform.rotation; 
 
-            // 设置画布的大小
+            // Set the canvas size
             RectTransform canvasRect = pauseCanvas.GetComponent<RectTransform>();
 
             if (canvasRect != null)
             {
-                // 调整画布的宽高比，使其合适
-                canvasRect.sizeDelta = new Vector2(800, 600); // 你可以根据需要调整宽度和高度
+                
+                canvasRect.sizeDelta = new Vector2(800, 600); // Adjust the canvas size
             }
             
             pauseCanvas.enabled = true;  
+        }
+
+         // Play the video when the canvas is shown
+        if (videoPlayer != null)
+        {
+            videoPlayer.Play();
         }
 
         // wait for 15 s
@@ -75,6 +89,11 @@ public class ShowVideo : MonoBehaviour
             Debug.Log("Pause canvas enabled after resume: " + pauseCanvas.enabled);
   
         }
+        if (videoPlayer != null)
+        {
+            videoPlayer.Stop();
+        }
+        
         gamePaused = false;
         pauseTime = float.MaxValue;
     }
