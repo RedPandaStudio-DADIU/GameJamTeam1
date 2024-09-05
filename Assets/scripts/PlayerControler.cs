@@ -24,8 +24,8 @@ public class PlayerController : MonoBehaviour
     private Timer timer;
     [SerializeField] Animator characterAnimator;
     [SerializeField] Animator bikeAnimator;
+    float startPositionY;
     // [SerializeField] Animator wheelBackAnimator;
-
     
     // Start is called before the first frame update
     void Start()
@@ -66,7 +66,6 @@ public class PlayerController : MonoBehaviour
         }
         characterAnimator.SetBool("isMoving", isMoving);
         bikeAnimator.SetBool("isMoving", isMoving);
-//scale - 0.03
 
         if (canMove){
             if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)) && isOnGround && !gameOver){
@@ -75,6 +74,9 @@ public class PlayerController : MonoBehaviour
                 //playerAnim.SetTrigger("Jump_trig");
                 //dirtParticle.Stop();
                 //playerAudio.PlayOneShot(jumpSound, 1.0f);
+                bikeAnimator.SetBool("isJumping", true);
+                characterAnimator.SetBool("isJumping", true);
+                
             }
 
             float horizontalInput = Input.GetAxis("Horizontal");
@@ -117,13 +119,14 @@ public class PlayerController : MonoBehaviour
         if (transform.position.y < -10 && !gameOver) // 这里 -10 是你可以设置的阈值
         {
             gameOver = true;  // 标记游戏结束
-            Debug.Log("Game Over: Player fell down");
+            // Debug.Log("Game Over: Player fell down");
             
             
 
             // 加载结束场景
             SceneManager.LoadScene("Failing");  // 加载结束场景或显示游戏结束信息
         }
+
     }
 
     private void OnTriggerEnter(Collider other) {
@@ -142,13 +145,18 @@ public class PlayerController : MonoBehaviour
     private void OnCollisionEnter(Collision collision){
         // Debug.Log("Collision!!!"+collision.gameObject.name);
         if (collision.gameObject.CompareTag("Ground")){
-            // Debug.Log("GROUND!!");
+            Debug.Log("GROUND!!");
             isOnGround = true;
+
+            characterAnimator.SetBool("isJumping", false);
+            bikeAnimator.SetBool("isJumping", false);
+    
+
         }else if(collision.gameObject.CompareTag("Crossroad")) {
             Transform firstChild = collision.gameObject.transform.GetChild(0);  
             GameObject child = firstChild.gameObject;
 
-            Debug.Log("Crossroad!! Player: " + transform.position.y + " Crossroad: " + collision.gameObject.transform.position.y + " cross child: " + child.transform.position.y);
+            // Debug.Log("Crossroad!! Player: " + transform.position.y + " Crossroad: " + collision.gameObject.transform.position.y + " cross child: " + child.transform.position.y);
         } else if (collision.gameObject.CompareTag("Car") || collision.gameObject.CompareTag("SpecialCar")){
             Debug.Log("Collision!");
             canMove = false;
@@ -157,7 +165,7 @@ public class PlayerController : MonoBehaviour
         } else if (collision.gameObject.CompareTag("Finish")){
             gameOver = true;
             timer.StopTimer();
-            Debug.Log("Game Over?");
+            // Debug.Log("Game Over?");
             Time.timeScale = 0;
             SceneManager.LoadScene("Ending");
         }
