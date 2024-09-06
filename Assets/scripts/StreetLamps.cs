@@ -7,7 +7,7 @@ public class StreetLamps : MonoBehaviour
     public GameObject lightPrefab;     
     public int numberOfLights = 10;    
     public float spacing = 35f;  
-    public float lower = 0.7f;      
+    public float lower = 0.5f;      
     public float lightDuration = 5f;   
 
     private List<GameObject> lights = new List<GameObject>();
@@ -17,7 +17,7 @@ public class StreetLamps : MonoBehaviour
 
     void Start()
     {
-        
+        lower = 0.5f;
         
         for (int i = 0; i < numberOfLights; i++)
         {
