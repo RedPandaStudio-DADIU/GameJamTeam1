@@ -10,6 +10,7 @@ public class HomelessGuyMovement : MonoBehaviour
     [SerializeField] CarController carController;    
     [SerializeField] NavMeshManager navMeshManager; 
     [SerializeField] Animator animator;
+    [SerializeField] GamePauseManager gameManager;
     private Transform cyclistTransform;
     private float initial_offset = 0f;
     private bool canMove = false;
@@ -18,8 +19,9 @@ public class HomelessGuyMovement : MonoBehaviour
     void Start()
     {
         carController = FindObjectOfType<CarController>();
+        gameManager = FindObjectOfType<GamePauseManager>();
         cyclistTransform = GameObject.FindWithTag("Player").transform; 
-        initial_offset = 10f;
+        initial_offset = 30f;
         transform.rotation = Quaternion.identity;
 
     }
@@ -30,11 +32,12 @@ public class HomelessGuyMovement : MonoBehaviour
         Debug.Log("Normal cars: " + carController.GetNumberOfNormalCars() + " Special cars: " + carController.GetNumberOfSpecialCars());
         if(carController.GetNumberOfNormalCars()>= 1 && carController.GetNumberOfSpecialCars()>= 1){
             if(!canMove){
+                StartCoroutine(gameManager.PauseAndResumeGame());
                 Debug.Log("Spawning Homeless Guy");
                 Spawn();
                 canMove = true;
                 agent = gameObject.AddComponent<NavMeshAgent>();
-                agent.speed = 7f;
+                agent.speed = 8f;
                 agent.angularSpeed = 0.5f;
                 // agent.autoBraking = false; 
                 agent.acceleration = 15f;
