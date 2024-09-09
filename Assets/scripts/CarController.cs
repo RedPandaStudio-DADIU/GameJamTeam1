@@ -37,9 +37,11 @@ public class CarController : MonoBehaviour
 
     void Start()
     {
+        // Get player position
         cyclistTransform = GameObject.FindWithTag("Player").transform; 
         doorPosition = GameObject.FindWithTag("Finish").transform; 
 
+        // Start coroutines for automatic car spawning
         carCoroutine = StartCoroutine(SpawnCarsRandomly());
         specialCarCoroutine = StartCoroutine(SpawnSpecialCarsRandomly());
  
@@ -72,18 +74,18 @@ public class CarController : MonoBehaviour
 
             }
         }
-
+        // find spawn position
         float randomDist = Random.Range(minReactionDistance, maxReactionDistance);
         spawnPosition = new Vector3(cyclistTransform.position.x+randomDist, 2.2f, cyclistTransform.position.z-startDistance); 
 
-
+        // check if other cars spawned
         if(IsTraffic(spawnPosition, Vector3.forward)){
             stopInstantiating = true;
         } else{
             stopInstantiating = false;
         }
 
-
+        // check if learning curved achieved
         if(startNormalCarSpawned == numberOfCarsStart && startSpecialCarSpawned==numberOfCarsStart){
             isNormalCarSpawned = true;
             isSpecialCarSpawned = true;
@@ -118,6 +120,7 @@ public class CarController : MonoBehaviour
         }
     }
 
+    // Spawn normal car
     private void SpawnCar(){
         if (!IsCloseToFinish() && isNormalCarSpawned){
             Vector3 nextRoadSpawnPos = envManager.GetSpawnPosition();
@@ -133,6 +136,7 @@ public class CarController : MonoBehaviour
         }
     }
 
+    // Spawn special car
     private void SpawnSpecialCar(){
         if (!stopInstantiating && isSpecialCarSpawned)
         {
@@ -169,7 +173,7 @@ public class CarController : MonoBehaviour
         }
     }
 
-
+    // check if player is close to finishing
     private bool IsCloseToFinish(float distance=20.0f)
     {
         if ((doorPosition.position.x - cyclistTransform.position.x) < distance){
@@ -179,6 +183,7 @@ public class CarController : MonoBehaviour
         }
     }
 
+    // check if other car is there
     private bool IsTraffic(Vector3 position, Vector3 direction, float checkDistance = 10.0f)
     {
 
