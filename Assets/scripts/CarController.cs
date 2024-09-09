@@ -124,7 +124,6 @@ public class CarController : MonoBehaviour
             nextRoadSpawnPos.x = nextRoadSpawnPos.x - 20.0f;
             nextRoadSpawnPos.y = positionY;
             nextRoadSpawnPos.z = cyclistTransform.position.z;
-            // GameObject instance = Instantiate(car,  nextRoadSpawnPos, Quaternion.identity);
             GameObject instance = Instantiate(car,  nextRoadSpawnPos, car.transform.rotation);
 
 
@@ -142,12 +141,6 @@ public class CarController : MonoBehaviour
                 // Debug.Log("Special Car going now!");
 
                 if(envManager.specialCarSpawningPoints.Count > 0){
-                    // Debug.Log("AAAAAAAAAAAAA");
-                    // for(int i=0; i<envManager.specialCarSpawningPoints.Count; i++){
-                    //     float xPosition = envManager.specialCarSpawningPoints[0].transform.position.x;
-                    //     if(xPosition > cyclistTransform.position.x){
-
-                    // envManager.specialCarSpawningPoints.gameObject.
 
                         Transform firstChild = envManager.specialCarSpawningPoints[0].transform.GetChild(0);  
                         GameObject child = firstChild.gameObject;
@@ -160,15 +153,11 @@ public class CarController : MonoBehaviour
                         }
 
 
-                            // spawnPosition.x = envManager.specialCarSpawningPoints[0].transform.position.x;
-                        //     break;
-                        // }
-                    // }
+
                 }
 
                 spawnPosition.y = 4f; //positionY;
                 spawnPosition.z = cyclistTransform.position.z+startDistance;
-                // GameObject instance = Instantiate(specialCar, spawnPosition, Quaternion.Euler(0, -90, 0));
                 GameObject instance = Instantiate(specialCar,  spawnPosition, specialCar.transform.rotation);
 
                 if (startSpecialCarSpawned < numberOfCarsStart){
